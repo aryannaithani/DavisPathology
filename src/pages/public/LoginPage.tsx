@@ -6,7 +6,6 @@ import { Activity, LogIn, Lock, Mail, AlertTriangle, ShieldCheck } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent } from '@/components/ui/card';
 import { loginSchema, LoginFormData } from '@/schemas';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
@@ -60,29 +59,32 @@ export const LoginPage: React.FC = () => {
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-6">
-        {/* Logo and Heading */}
+        {/* Brand Header */}
         <div className="text-center space-y-2">
-          <Link to="/" className="inline-flex items-center gap-2 group">
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white shadow-md">
+          <Link to="/" className="inline-flex items-center gap-2">
+            <div className="w-12 h-12 bg-[#171717] border-2 border-[#171717] flex items-center justify-center text-[#F5C542]">
               <Activity className="w-7 h-7 stroke-[2.5]" />
             </div>
           </Link>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground">
-            Sign In to Your Account
+          <div className="text-[11px] font-black uppercase tracking-widest text-[#E94B35]">
+            Davis Pathology Lab | Agra
+          </div>
+          <h1 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] tracking-tight">
+            Sign In to Portal
           </h1>
-          <p className="text-xs text-muted-foreground">
-            Access your bookings, track test status, and download diagnostic reports.
+          <p className="text-xs text-neutral-600">
+            Access appointment records, track sample status, and download diagnostic reports.
           </p>
         </div>
 
         {/* Demo Mode Helper Credentials Box */}
-        <div className="p-4 rounded-xl bg-neutral-900 text-white text-xs space-y-2 border border-neutral-800">
-          <div className="flex items-center gap-1.5 text-secondary font-bold">
+        <div className="p-4 bg-[#171717] text-white text-xs space-y-2 border-2 border-[#171717]">
+          <div className="flex items-center gap-1.5 text-[#F5C542] font-black text-xs uppercase tracking-wider">
             <ShieldCheck className="w-4 h-4" />
-            <span>Demonstration Access</span>
+            <span>Demonstration Quick Access</span>
           </div>
           <p className="text-neutral-400 text-[11px]">
-            In demonstration mode, you can test patient or administrator navigation directly:
+            In demonstration mode, fill pre-configured demo credentials with one click:
           </p>
           <div className="grid grid-cols-2 gap-2 pt-1">
             <Button
@@ -93,7 +95,7 @@ export const LoginPage: React.FC = () => {
                 setValue('email', 'admin@davispathology.com');
                 setValue('password', 'AdminPassword123!');
               }}
-              className="text-[10px] h-7 bg-neutral-800 border-neutral-700 text-white hover:bg-neutral-700"
+              className="text-[10px] h-8 bg-neutral-900 border border-neutral-700 text-white hover:bg-neutral-800 rounded-none uppercase font-bold"
             >
               Fill Admin Demo
             </Button>
@@ -105,72 +107,86 @@ export const LoginPage: React.FC = () => {
                 setValue('email', 'patient@example.com');
                 setValue('password', 'PatientPassword123!');
               }}
-              className="text-[10px] h-7 bg-neutral-800 border-neutral-700 text-white hover:bg-neutral-700"
+              className="text-[10px] h-8 bg-neutral-900 border border-neutral-700 text-white hover:bg-neutral-800 rounded-none uppercase font-bold"
             >
               Fill Patient Demo
             </Button>
           </div>
         </div>
 
-        <Card className="border-border shadow-md">
-          <CardContent className="p-6 sm:p-8 space-y-5">
+        {/* Form Container */}
+        <div className="border-2 border-[#171717] bg-white">
+          <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center justify-between">
+            <span className="text-xs font-black uppercase tracking-wider text-[#171717]">Authentication Credentials</span>
+            <Lock className="w-3.5 h-3.5 text-[#E94B35]" />
+          </div>
+
+          <div className="p-6 sm:p-8 space-y-4">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-xs font-semibold">
-                  Email Address
+                <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                  Email Address <span className="text-[#E94B35]">*</span>
                 </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="e.g. yourname@example.com"
-                  {...register('email')}
-                />
+                <div className="relative">
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-11 text-xs"
+                    {...register('email')}
+                  />
+                  <Mail className="absolute right-3 top-3.5 w-4 h-4 text-neutral-400" />
+                </div>
                 {errors.email && (
-                  <p className="text-[11px] text-destructive">{errors.email.message}</p>
+                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
                 )}
               </div>
 
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password" className="text-xs font-semibold">
-                    Password
+                  <Label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                    Password <span className="text-[#E94B35]">*</span>
                   </Label>
                   <Link
                     to="/forgot-password"
-                    className="text-[11px] text-primary hover:underline font-medium"
+                    className="text-[11px] font-bold text-[#E94B35] hover:underline"
                   >
-                    Forgot Password?
+                    Forgot password?
                   </Link>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  {...register('password')}
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="••••••••"
+                    className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-11 text-xs"
+                    {...register('password')}
+                  />
+                  <Lock className="absolute right-3 top-3.5 w-4 h-4 text-neutral-400" />
+                </div>
                 {errors.password && (
-                  <p className="text-[11px] text-destructive">{errors.password.message}</p>
+                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.password.message}</p>
                 )}
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-primary hover:bg-primary-600 text-white font-bold h-11 text-sm shadow-sm gap-2"
+                className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717] mt-2"
               >
-                <LogIn className="w-4 h-4" />
-                {isLoading ? 'Signing In...' : 'Sign In'}
+                <LogIn className="w-4 h-4 mr-2" />
+                {isLoading ? 'Signing In...' : 'Sign In to Portal'}
               </Button>
             </form>
 
-            <div className="pt-4 border-t border-border text-center text-xs text-muted-foreground">
-              Don't have an account yet?{' '}
-              <Link to="/register" className="text-primary font-semibold hover:underline">
-                Create an account
+            <div className="pt-4 border-t-2 border-neutral-200 text-center text-xs text-neutral-600">
+              Don't have a patient account?{' '}
+              <Link to="/register" className="font-bold text-[#171717] hover:underline uppercase">
+                Create Account
               </Link>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

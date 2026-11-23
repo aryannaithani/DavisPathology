@@ -13,7 +13,8 @@ import {
   Receipt,
   User,
   Plus,
-  Trash2
+  Trash2,
+  Info
 } from 'lucide-react';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Button } from '@/components/ui/button';
@@ -21,8 +22,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { useTests } from '@/hooks/useTests';
 import { usePackages } from '@/hooks/usePackages';
 import { useCreateBooking } from '@/hooks/useBookings';
@@ -152,87 +151,92 @@ export const BookAppointmentPage: React.FC = () => {
       ];
 
       const result = await createBookingMutation.mutateAsync({
-        patient_id: user?.id ?? null,
+        patient_id: user?.id || null,
         patient_name: formData.patient_name,
         phone: formData.phone,
         email: formData.email || '',
-        age: Number(formData.age),
+        age: formData.age,
         gender: formData.gender,
         appointment_date: formData.appointment_date,
         appointment_time: formData.appointment_time,
         collection_method: formData.collection_method,
-        notes: formData.notes || '',
+        notes: formData.notes,
         items,
       });
 
       setConfirmedBooking(result.booking);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      toast({
+        title: 'Booking Request Submitted',
+        description: `Reference: ${result.reference}. Our Agra laboratory team will contact you.`,
+      });
     } catch (err: unknown) {
       toast({
         variant: 'destructive',
-        title: 'Booking Request Failed',
-        description: err instanceof Error ? err.message : 'Please check your inputs and try again.',
+        title: 'Booking Submission Failed',
+        description: err instanceof Error ? err.message : 'Please try again later.',
       });
     }
   };
 
   const today = new Date().toISOString().split('T')[0];
 
-  // If booking is confirmed, show the Confirmation Screen
+  // If booking is confirmed, show confirmation view
   if (confirmedBooking) {
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '919999999999';
+    const whatsappNumber = '919876543210';
     const waText = encodeURIComponent(
-      `Hello Davis Pathology Lab, I have submitted a booking request with Reference: ${confirmedBooking.booking_reference} for ${confirmedBooking.patient_name}. Please confirm the appointment.`
+      `Hello Davis Pathology Lab, I have booked appointment ref: ${confirmedBooking.booking_reference} for patient: ${confirmedBooking.patient_name}.`
     );
 
     return (
-      <div className="py-12 max-w-3xl mx-auto px-4 sm:px-6">
-        <Card className="border-border shadow-lg overflow-hidden">
-          <div className="bg-primary text-white p-8 text-center space-y-3">
-            <div className="w-16 h-16 rounded-full bg-white/20 mx-auto flex items-center justify-center">
-              <CheckCircle2 className="w-10 h-10 text-white" />
+      <div className="py-10 max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="border-2 border-[#171717] bg-white">
+          <div className="p-6 bg-[#171717] text-white border-b-2 border-[#171717]">
+            <div className="inline-block bg-[#F5C542] text-[#171717] text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 mb-2">
+              APPOINTMENT CONFIRMED
             </div>
-            <h1 className="font-heading font-extrabold text-2xl sm:text-3xl">
-              Booking Request Received!
-            </h1>
-            <p className="text-white/90 text-sm max-w-md mx-auto">
-              Your booking request has been received. Our team will contact you to confirm your appointment.
+            <h2 className="font-heading font-black text-2xl text-white tracking-tight">
+              Booking Request Received
+            </h2>
+            <p className="text-xs text-neutral-300 mt-1">
+              Your appointment request has been logged in our laboratory database.
             </p>
           </div>
 
-          <CardContent className="p-6 sm:p-8 space-y-6">
-            <div className="p-4 rounded-xl bg-neutral-50 border border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="p-6 sm:p-8 space-y-6">
+            {/* Booking Reference Box */}
+            <div className="p-4 bg-neutral-100 border-2 border-neutral-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">
-                  Booking Reference Number
+                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+                  Laboratory Reference Number
                 </span>
-                <div className="font-heading font-extrabold text-xl text-primary mt-0.5">
+                <div className="text-2xl font-black font-heading text-[#E94B35]">
                   {confirmedBooking.booking_reference}
                 </div>
               </div>
-              <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300 font-bold px-3 py-1">
-                STATUS: PENDING CONFIRMATION
-              </Badge>
+              <div className="bg-[#171717] text-white px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                Status: {confirmedBooking.status}
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="space-y-1">
-                <span className="text-muted-foreground font-semibold">Patient Name:</span>
-                <p className="font-bold text-foreground text-sm">{confirmedBooking.patient_name}</p>
+            {/* Appointment Specifications */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs border border-neutral-200 p-4">
+              <div>
+                <span className="text-neutral-500 uppercase text-[10px] font-bold block">Patient Name</span>
+                <p className="font-bold text-[#171717] text-sm mt-0.5">{confirmedBooking.patient_name}</p>
               </div>
-              <div className="space-y-1">
-                <span className="text-muted-foreground font-semibold">Contact Mobile:</span>
-                <p className="font-bold text-foreground text-sm">+91 {confirmedBooking.phone}</p>
+              <div>
+                <span className="text-neutral-500 uppercase text-[10px] font-bold block">Contact Phone</span>
+                <p className="font-bold text-[#171717] text-sm mt-0.5">{confirmedBooking.phone}</p>
               </div>
-              <div className="space-y-1">
-                <span className="text-muted-foreground font-semibold">Appointment Date & Time:</span>
-                <p className="font-bold text-foreground text-sm">
+              <div>
+                <span className="text-neutral-500 uppercase text-[10px] font-bold block">Scheduled Date & Time</span>
+                <p className="font-bold text-[#171717] text-sm mt-0.5">
                   {confirmedBooking.appointment_date} at {confirmedBooking.appointment_time}
                 </p>
               </div>
-              <div className="space-y-1">
-                <span className="text-muted-foreground font-semibold">Collection Preference:</span>
-                <p className="font-bold text-foreground text-sm capitalize">
+              <div>
+                <span className="text-neutral-500 uppercase text-[10px] font-bold block">Collection Mode</span>
+                <p className="font-bold text-[#171717] text-sm mt-0.5">
                   {confirmedBooking.collection_method === 'home_collection'
                     ? 'Home Sample Collection'
                     : 'Visit Laboratory (Walk-in)'}
@@ -241,20 +245,20 @@ export const BookAppointmentPage: React.FC = () => {
             </div>
 
             {/* Selected Items */}
-            <div className="border-t border-border pt-4">
-              <h4 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-3">
+            <div className="border-t-2 border-neutral-200 pt-4">
+              <h4 className="font-bold text-xs uppercase tracking-wider text-[#171717] mb-3">
                 Selected Investigations / Packages
               </h4>
               <div className="space-y-2">
                 {confirmedBooking.booking_items?.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center text-xs py-1.5 border-b border-border/50">
-                    <span className="font-medium text-foreground">{item.item_name}</span>
-                    <span className="font-bold text-foreground">{formatPrice(item.item_price)}</span>
+                  <div key={item.id} className="flex justify-between items-center text-xs py-2 border-b border-neutral-200">
+                    <span className="font-medium text-[#171717]">{item.item_name}</span>
+                    <span className="font-bold text-[#171717]">{formatPrice(item.item_price)}</span>
                   </div>
                 ))}
-                <div className="flex justify-between items-center text-sm pt-2 font-bold">
+                <div className="flex justify-between items-center text-sm pt-3 font-bold">
                   <span>Estimated Total Amount:</span>
-                  <span className="text-primary text-base">{formatPrice(confirmedBooking.total_amount)}</span>
+                  <span className="text-[#E94B35] text-lg font-black">{formatPrice(confirmedBooking.total_amount)}</span>
                 </div>
               </div>
             </div>
@@ -267,25 +271,25 @@ export const BookAppointmentPage: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex-1"
               >
-                <Button className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold gap-2">
-                  <MessageCircle className="w-4 h-4 fill-current" />
+                <Button className="w-full bg-[#171717] hover:bg-neutral-800 text-white font-bold gap-2 rounded-none h-12 uppercase text-xs tracking-wider border-2 border-[#171717]">
+                  <MessageCircle className="w-4 h-4 text-[#F5C542]" />
                   Send WhatsApp Confirmation
                 </Button>
               </a>
               <Link to="/patient/dashboard" className="flex-1">
-                <Button variant="outline" className="w-full font-semibold">
+                <Button variant="outline" className="w-full font-bold rounded-none h-12 uppercase text-xs tracking-wider border-2 border-[#171717]">
                   Go to Patient Dashboard
                 </Button>
               </Link>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <PageHeader
         title="Book Diagnostic Appointment"
         subtitle="Schedule your lab visit or request home sample collection in Agra in simple, intuitive steps."
@@ -295,93 +299,96 @@ export const BookAppointmentPage: React.FC = () => {
         ]}
       />
 
-      <div className="mb-6 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
-        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-        <div>
-          <strong>Notice:</strong> Submitting this booking registers a request with status <strong>PENDING</strong>. A representative will contact you to verify sample preparation and confirm the appointment slot.
+      <div className="mb-6 p-4 bg-[#F5C542]/15 border-2 border-[#F5C542] text-xs text-[#171717] flex items-start gap-3">
+        <Info className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
+        <div className="leading-relaxed">
+          <strong className="font-bold uppercase tracking-wider">Notice:</strong> Submitting this booking registers a request with status <strong>PENDING</strong>. A representative from Davis Pathology Lab will contact you via phone to verify fasting guidelines and confirm the schedule.
         </div>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Main Form Fields (8 Cols) */}
-          <div className="lg:col-span-8 space-y-8">
+          <div className="lg:col-span-8 space-y-6">
             {/* Section 1: Patient Information */}
-            <Card className="border-border shadow-xs">
-              <CardContent className="p-6 sm:p-8 space-y-4">
-                <div className="flex items-center gap-2 pb-3 border-b border-border">
-                  <User className="w-5 h-5 text-primary" />
-                  <h2 className="font-heading font-bold text-lg text-foreground">
-                    1. Patient Information
-                  </h2>
-                </div>
-
+            <div className="border-2 border-[#171717] bg-white">
+              <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center gap-2">
+                <User className="w-4 h-4 text-[#E94B35]" />
+                <h2 className="font-heading font-black text-sm uppercase tracking-wider text-[#171717]">
+                  1. Patient Information
+                </h2>
+              </div>
+              <div className="p-6 space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <Label htmlFor="patient_name" className="text-xs font-semibold">
-                      Patient Full Name <span className="text-primary">*</span>
+                    <Label htmlFor="patient_name" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                      Patient Full Name <span className="text-[#E94B35]">*</span>
                     </Label>
                     <Input
                       id="patient_name"
                       placeholder="e.g. Ramesh Kumar"
+                      className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-10"
                       {...register('patient_name')}
                     />
                     {errors.patient_name && (
-                      <p className="text-[11px] text-destructive">{errors.patient_name.message}</p>
+                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.patient_name.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label htmlFor="phone" className="text-xs font-semibold">
-                      Mobile Number <span className="text-primary">*</span>
+                    <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                      Mobile Number <span className="text-[#E94B35]">*</span>
                     </Label>
                     <Input
                       id="phone"
                       placeholder="10-digit mobile number"
                       maxLength={10}
+                      className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-10"
                       {...register('phone')}
                     />
                     {errors.phone && (
-                      <p className="text-[11px] text-destructive">{errors.phone.message}</p>
+                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.phone.message}</p>
                     )}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="space-y-1.5 sm:col-span-2">
-                    <Label htmlFor="email" className="text-xs font-semibold">
-                      Email Address <span className="text-muted-foreground font-normal">(Optional, for reports)</span>
+                    <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                      Email Address <span className="text-neutral-500 font-normal lowercase">(optional for reports)</span>
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="e.g. ramesh@example.com"
+                      className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-10"
                       {...register('email')}
                     />
                     {errors.email && (
-                      <p className="text-[11px] text-destructive">{errors.email.message}</p>
+                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label htmlFor="age" className="text-xs font-semibold">
-                      Age <span className="text-primary">*</span>
+                    <Label htmlFor="age" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                      Age <span className="text-[#E94B35]">*</span>
                     </Label>
                     <Input
                       id="age"
                       type="number"
                       placeholder="e.g. 42"
+                      className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-10"
                       {...register('age', { valueAsNumber: true })}
                     />
                     {errors.age && (
-                      <p className="text-[11px] text-destructive">{errors.age.message}</p>
+                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.age.message}</p>
                     )}
                   </div>
                 </div>
 
                 <div className="space-y-2 pt-2">
-                  <Label className="text-xs font-semibold">
-                    Gender <span className="text-primary">*</span>
+                  <Label className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                    Gender <span className="text-[#E94B35]">*</span>
                   </Label>
                   <RadioGroup
                     defaultValue="male"
@@ -389,47 +396,46 @@ export const BookAppointmentPage: React.FC = () => {
                     className="flex items-center gap-6"
                   >
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="male" id="g-male" />
-                      <Label htmlFor="g-male" className="text-xs font-medium cursor-pointer">Male</Label>
+                      <RadioGroupItem value="male" id="g-male" className="rounded-none" />
+                      <Label htmlFor="g-male" className="text-xs font-bold cursor-pointer">Male</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="female" id="g-female" />
-                      <Label htmlFor="g-female" className="text-xs font-medium cursor-pointer">Female</Label>
+                      <RadioGroupItem value="female" id="g-female" className="rounded-none" />
+                      <Label htmlFor="g-female" className="text-xs font-bold cursor-pointer">Female</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="other" id="g-other" />
-                      <Label htmlFor="g-other" className="text-xs font-medium cursor-pointer">Other</Label>
+                      <RadioGroupItem value="other" id="g-other" className="rounded-none" />
+                      <Label htmlFor="g-other" className="text-xs font-bold cursor-pointer">Other</Label>
                     </div>
                   </RadioGroup>
                   {errors.gender && (
-                    <p className="text-[11px] text-destructive">{errors.gender.message}</p>
+                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.gender.message}</p>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Section 2: Select Tests / Packages */}
-            <Card className="border-border shadow-xs">
-              <CardContent className="p-6 sm:p-8 space-y-5">
-                <div className="flex items-center justify-between pb-3 border-b border-border">
-                  <div className="flex items-center gap-2">
-                    <CalendarCheck className="w-5 h-5 text-primary" />
-                    <h2 className="font-heading font-bold text-lg text-foreground">
-                      2. Select Tests & Health Packages <span className="text-primary">*</span>
-                    </h2>
-                  </div>
-                  <span className="text-xs text-muted-foreground">Select one or multiple</span>
+            <div className="border-2 border-[#171717] bg-white">
+              <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <CalendarCheck className="w-4 h-4 text-[#E94B35]" />
+                  <h2 className="font-heading font-black text-sm uppercase tracking-wider text-[#171717]">
+                    2. Select Tests & Health Packages <span className="text-[#E94B35]">*</span>
+                  </h2>
                 </div>
-
+                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Multiple selection enabled</span>
+              </div>
+              <div className="p-6 space-y-5">
                 {errors.selected_tests && (
-                  <div className="p-3 bg-red-50 text-destructive text-xs rounded-lg border border-red-200">
+                  <div className="p-3 bg-red-50 text-[#E94B35] text-xs border border-red-300 font-semibold">
                     {errors.selected_tests.message}
                   </div>
                 )}
 
                 {/* Popular Health Packages */}
                 <div>
-                  <h3 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-3">
+                  <h3 className="font-bold text-xs uppercase tracking-wider text-[#171717] mb-2 pb-1 border-b border-neutral-200">
                     Health Checkup Packages
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -445,17 +451,17 @@ export const BookAppointmentPage: React.FC = () => {
                               setSelectedPackageIds([...selectedPackageIds, pkg.id]);
                             }
                           }}
-                          className={`p-3.5 rounded-xl border text-xs cursor-pointer transition-all flex items-start justify-between gap-3 ${
+                          className={`p-3 border-2 text-xs cursor-pointer transition-all flex items-start justify-between gap-3 ${
                             isSelected
-                              ? 'border-primary bg-primary/5 text-primary shadow-xs'
-                              : 'border-border bg-neutral-50/50 hover:bg-neutral-100 text-foreground'
+                              ? 'border-[#171717] bg-[#F5C542]/20 font-bold'
+                              : 'border-neutral-300 bg-white hover:border-neutral-400 text-neutral-800'
                           }`}
                         >
                           <div>
-                            <strong className="block font-semibold">{pkg.name}</strong>
-                            <span className="text-muted-foreground text-[11px] line-clamp-1">{pkg.description}</span>
+                            <strong className="block text-sm">{pkg.name}</strong>
+                            <span className="text-neutral-500 text-[11px] line-clamp-1">{pkg.description}</span>
                           </div>
-                          <span className="font-bold shrink-0">{formatPrice(pkg.price)}</span>
+                          <span className="font-black text-[#E94B35] shrink-0 text-sm">{formatPrice(pkg.price)}</span>
                         </div>
                       );
                     })}
@@ -464,10 +470,10 @@ export const BookAppointmentPage: React.FC = () => {
 
                 {/* Individual Diagnostic Tests */}
                 <div className="pt-2">
-                  <h3 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-3">
+                  <h3 className="font-bold text-xs uppercase tracking-wider text-[#171717] mb-2 pb-1 border-b border-neutral-200">
                     Individual Blood & Pathology Tests
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-72 overflow-y-auto pr-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-72 overflow-y-auto pr-1">
                     {allTests.map((t) => {
                       const isSelected = selectedTestIds.includes(t.id);
                       return (
@@ -480,53 +486,54 @@ export const BookAppointmentPage: React.FC = () => {
                               setSelectedTestIds([...selectedTestIds, t.id]);
                             }
                           }}
-                          className={`p-3 rounded-xl border text-xs cursor-pointer transition-all flex items-center justify-between gap-2 ${
+                          className={`p-2.5 border text-xs cursor-pointer transition-all flex items-center justify-between gap-2 ${
                             isSelected
-                              ? 'border-primary bg-primary/5 text-primary shadow-xs'
-                              : 'border-border bg-white hover:bg-neutral-50 text-foreground'
+                              ? 'border-[#171717] bg-neutral-900 text-white font-bold'
+                              : 'border-neutral-300 bg-neutral-50 hover:bg-neutral-100 text-neutral-800'
                           }`}
                         >
                           <div className="truncate">
-                            <span className="font-medium truncate block">{t.name}</span>
-                            <span className="text-[10px] text-muted-foreground">{t.sample_type}</span>
+                            <span className="truncate block font-semibold">{t.name}</span>
+                            <span className={`text-[10px] ${isSelected ? 'text-[#F5C542]' : 'text-neutral-500'}`}>{t.sample_type}</span>
                           </div>
-                          <span className="font-bold shrink-0">{formatPrice(t.price)}</span>
+                          <span className={`font-bold shrink-0 ${isSelected ? 'text-[#F5C542]' : 'text-[#E94B35]'}`}>
+                            {formatPrice(t.price)}
+                          </span>
                         </div>
                       );
                     })}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Section 3: Appointment Date, Time & Collection Preference */}
-            <Card className="border-border shadow-xs">
-              <CardContent className="p-6 sm:p-8 space-y-5">
-                <div className="flex items-center gap-2 pb-3 border-b border-border">
-                  <Clock className="w-5 h-5 text-primary" />
-                  <h2 className="font-heading font-bold text-lg text-foreground">
-                    3. Appointment & Collection Details
-                  </h2>
-                </div>
-
+            <div className="border-2 border-[#171717] bg-white">
+              <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center gap-2">
+                <Clock className="w-4 h-4 text-[#E94B35]" />
+                <h2 className="font-heading font-black text-sm uppercase tracking-wider text-[#171717]">
+                  3. Appointment & Collection Details
+                </h2>
+              </div>
+              <div className="p-6 space-y-4">
                 {/* Collection Method Radio */}
-                <div className="space-y-3">
-                  <Label className="text-xs font-semibold">
-                    Sample Collection Preference <span className="text-primary">*</span>
+                <div className="space-y-2">
+                  <Label className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                    Sample Collection Preference <span className="text-[#E94B35]">*</span>
                   </Label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div
                       onClick={() => setValue('collection_method', 'visit_laboratory')}
-                      className={`p-4 rounded-xl border cursor-pointer transition-all flex items-start gap-3 ${
+                      className={`p-4 border-2 cursor-pointer transition-all flex items-start gap-3 ${
                         collectionMethod === 'visit_laboratory'
-                          ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
-                          : 'border-border bg-white hover:bg-neutral-50'
+                          ? 'border-[#171717] bg-neutral-900 text-white'
+                          : 'border-neutral-300 bg-white hover:border-neutral-400'
                       }`}
                     >
-                      <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <MapPin className={`w-5 h-5 shrink-0 mt-0.5 ${collectionMethod === 'visit_laboratory' ? 'text-[#F5C542]' : 'text-[#E94B35]'}`} />
                       <div>
-                        <strong className="block text-sm font-semibold text-foreground">Visit Laboratory</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
+                        <strong className="block text-sm font-bold uppercase tracking-wider">Visit Laboratory</strong>
+                        <p className={`text-xs mt-1 ${collectionMethod === 'visit_laboratory' ? 'text-neutral-300' : 'text-neutral-600'}`}>
                           Shop No. 4, Millenium Complex, Bhagwan Talkies, Agra
                         </p>
                       </div>
@@ -534,17 +541,17 @@ export const BookAppointmentPage: React.FC = () => {
 
                     <div
                       onClick={() => setValue('collection_method', 'home_collection')}
-                      className={`p-4 rounded-xl border cursor-pointer transition-all flex items-start gap-3 ${
+                      className={`p-4 border-2 cursor-pointer transition-all flex items-start gap-3 ${
                         collectionMethod === 'home_collection'
-                          ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
-                          : 'border-border bg-white hover:bg-neutral-50'
+                          ? 'border-[#171717] bg-neutral-900 text-white'
+                          : 'border-neutral-300 bg-white hover:border-neutral-400'
                       }`}
                     >
-                      <Home className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+                      <Home className={`w-5 h-5 shrink-0 mt-0.5 ${collectionMethod === 'home_collection' ? 'text-[#F5C542]' : 'text-[#F5C542]'}`} />
                       <div>
-                        <strong className="block text-sm font-semibold text-foreground">Home Sample Collection</strong>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Trained phlebotomist visits your doorstep in Agra
+                        <strong className="block text-sm font-bold uppercase tracking-wider">Home Sample Collection</strong>
+                        <p className={`text-xs mt-1 ${collectionMethod === 'home_collection' ? 'text-neutral-300' : 'text-neutral-600'}`}>
+                          Trained phlebotomist visits your doorstep across Agra
                         </p>
                       </div>
                     </div>
@@ -554,27 +561,28 @@ export const BookAppointmentPage: React.FC = () => {
                 {/* Date & Time Select */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="space-y-1.5">
-                    <Label htmlFor="appointment_date" className="text-xs font-semibold">
-                      Preferred Date <span className="text-primary">*</span>
+                    <Label htmlFor="appointment_date" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                      Preferred Date <span className="text-[#E94B35]">*</span>
                     </Label>
                     <Input
                       id="appointment_date"
                       type="date"
                       min={today}
+                      className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-10"
                       {...register('appointment_date')}
                     />
                     {errors.appointment_date && (
-                      <p className="text-[11px] text-destructive">{errors.appointment_date.message}</p>
+                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.appointment_date.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label htmlFor="appointment_time" className="text-xs font-semibold">
-                      Preferred Time Slot <span className="text-primary">*</span>
+                    <Label htmlFor="appointment_time" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                      Preferred Time Slot <span className="text-[#E94B35]">*</span>
                     </Label>
                     <select
                       id="appointment_time"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex h-10 w-full rounded-none border-2 border-neutral-300 bg-white px-3 py-2 text-xs font-medium focus:border-[#171717] focus:outline-none"
                       {...register('appointment_time')}
                     >
                       {timeSlots.map((slot) => (
@@ -584,85 +592,93 @@ export const BookAppointmentPage: React.FC = () => {
                       ))}
                     </select>
                     {errors.appointment_time && (
-                      <p className="text-[11px] text-destructive">{errors.appointment_time.message}</p>
+                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.appointment_time.message}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Additional Notes */}
                 <div className="space-y-1.5 pt-2">
-                  <Label htmlFor="notes" className="text-xs font-semibold">
+                  <Label htmlFor="notes" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
                     Additional Notes / Address for Home Collection
                   </Label>
                   <Textarea
                     id="notes"
                     rows={3}
-                    placeholder="Provide your complete home address for sample collection, or any specific clinical instructions..."
+                    placeholder="Provide your complete home address for sample collection, landmark, or any clinical instructions..."
+                    className="rounded-none border-2 border-neutral-300 focus:border-[#171717]"
                     {...register('notes')}
                   />
                   {errors.notes && (
-                    <p className="text-[11px] text-destructive">{errors.notes.message}</p>
+                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.notes.message}</p>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
 
           {/* Sidebar Booking Summary (4 Cols) */}
           <div className="lg:col-span-4">
-            <div className="sticky top-28 bg-white p-6 rounded-2xl border border-border shadow-lg space-y-6">
-              <div className="flex items-center gap-2 pb-3 border-b border-border">
-                <Receipt className="w-5 h-5 text-primary" />
-                <h3 className="font-heading font-bold text-base text-foreground">
-                  Booking Summary
-                </h3>
+            <div className="sticky top-28 bg-[#171717] text-white border-2 border-[#171717] space-y-6">
+              <div className="p-4 bg-neutral-900 border-b border-neutral-800 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Receipt className="w-4 h-4 text-[#F5C542]" />
+                  <h3 className="font-heading font-black text-xs uppercase tracking-wider text-white">
+                    Booking Summary
+                  </h3>
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#F5C542]">
+                  Pay at Lab / Collection
+                </span>
               </div>
 
-              {selectedSummary.length === 0 ? (
-                <div className="py-8 text-center text-xs text-muted-foreground">
-                  No tests or packages selected yet. Please select at least one item from the left.
-                </div>
-              ) : (
-                <div className="space-y-3">
-                  <div className="max-h-56 overflow-y-auto space-y-2 pr-1">
-                    {selectedSummary.map((item, idx) => (
-                      <div key={idx} className="flex justify-between items-center text-xs py-1 border-b border-border/40">
-                        <span className="font-medium truncate pr-2">{item.name}</span>
-                        <span className="font-bold shrink-0">{formatPrice(item.price)}</span>
+              <div className="p-6 pt-0 space-y-6">
+                {selectedSummary.length === 0 ? (
+                  <div className="py-8 text-center text-xs text-neutral-400 border border-neutral-800 p-4">
+                    No tests or packages selected yet. Please select at least one item from the left.
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="max-h-56 overflow-y-auto space-y-2 pr-1 border-b border-neutral-800 pb-3">
+                      {selectedSummary.map((item, idx) => (
+                        <div key={idx} className="flex justify-between items-center text-xs py-1 border-b border-neutral-800/60">
+                          <span className="font-medium truncate pr-2 text-neutral-300">{item.name}</span>
+                          <span className="font-bold text-white shrink-0">{formatPrice(item.price)}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-2 space-y-2 text-xs">
+                      <div className="flex justify-between text-neutral-400">
+                        <span>Total Items:</span>
+                        <span className="text-white font-bold">{selectedSummary.length} investigations</span>
                       </div>
-                    ))}
+                      <div className="flex justify-between text-base font-black text-white pt-1 border-t border-neutral-800">
+                        <span>Estimated Total:</span>
+                        <span className="text-[#F5C542] text-xl font-heading">{formatPrice(calculatedTotal)}</span>
+                      </div>
+                      <p className="text-[10px] text-neutral-400 pt-1">
+                        *No prepayment required. Fees collected at the laboratory or during sample collection.
+                      </p>
+                    </div>
                   </div>
+                )}
 
-                  <div className="pt-3 border-t border-border space-y-1.5 text-xs">
-                    <div className="flex justify-between text-muted-foreground">
-                      <span>Total Investigations:</span>
-                      <span>{selectedSummary.length} items</span>
-                    </div>
-                    <div className="flex justify-between text-base font-extrabold text-foreground pt-1">
-                      <span>Estimated Amount:</span>
-                      <span className="text-primary">{formatPrice(calculatedTotal)}</span>
-                    </div>
-                    <p className="text-[10px] text-muted-foreground mt-1">
-                      *Payment is collected at the laboratory or during home sample collection.
-                    </p>
-                  </div>
+                <Button
+                  type="submit"
+                  disabled={createBookingMutation.isPending || selectedSummary.length === 0}
+                  className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 text-xs uppercase tracking-wider rounded-none border border-[#E94B35]"
+                >
+                  <CalendarCheck className="w-4 h-4 mr-2" />
+                  {createBookingMutation.isPending ? 'Submitting Booking...' : 'Confirm Booking Request'}
+                </Button>
+
+                <div className="p-3 bg-neutral-900 border border-neutral-800 text-[11px] text-neutral-400 space-y-1">
+                  <div className="font-bold uppercase tracking-wider text-white text-[10px]">What Happens Next:</div>
+                  <p>1. Our lab receives your request.</p>
+                  <p>2. Staff verifies fasting requirements via call.</p>
+                  <p>3. Specimen processed and report uploaded.</p>
                 </div>
-              )}
-
-              <Button
-                type="submit"
-                disabled={createBookingMutation.isPending || selectedSummary.length === 0}
-                className="w-full bg-primary hover:bg-primary-600 text-white font-bold h-12 text-sm shadow-md gap-2"
-              >
-                <CalendarCheck className="w-4 h-4" />
-                {createBookingMutation.isPending ? 'Submitting Booking...' : 'Confirm Booking Request'}
-              </Button>
-
-              <div className="p-3 rounded-xl bg-neutral-50 text-[11px] text-muted-foreground space-y-1">
-                <div className="font-semibold text-foreground">Next Steps:</div>
-                <p>1. We receive your request.</p>
-                <p>2. Lab staff calls to confirm time & fasting guidelines.</p>
-                <p>3. Sample collected & digital report generated.</p>
               </div>
             </div>
           </div>

@@ -2,11 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { 
   Search, 
-  Filter, 
   ArrowRight, 
   Clock, 
   Droplet, 
-  FileText, 
   CalendarCheck,
   AlertTriangle 
 } from 'lucide-react';
@@ -14,7 +12,6 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
 import { useTests, useCategories } from '@/hooks/useTests';
 import { formatPrice } from '@/lib/utils';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
@@ -66,7 +63,7 @@ export const TestsPage: React.FC = () => {
     <div className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <PageHeader
         title="Diagnostic Test Catalogue"
-        subtitle="Explore our comprehensive directory of laboratory investigations and specialized profiles."
+        subtitle="Explore our comprehensive directory of laboratory investigations and specialized profiles in Agra."
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Diagnostic Tests' },
@@ -74,62 +71,67 @@ export const TestsPage: React.FC = () => {
       />
 
       {/* Notice Banner */}
-      <div className="mb-8 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
-        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+      <div className="mb-8 p-3.5 border-2 border-secondary bg-secondary/15 text-xs text-[#171717] flex items-start gap-2.5">
+        <AlertTriangle className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
         <div>
-          <strong>Demonstration Catalogue:</strong> All test prices, sample requirements, and turnaround times are realistic demonstration parameters and must be validated with laboratory staff before clinical decision-making.
+          <strong className="font-extrabold uppercase">Demonstration Catalogue:</strong> All test prices, sample requirements, and turnaround times are realistic demonstration parameters and must be validated with laboratory staff before clinical testing.
         </div>
       </div>
 
-      {/* Search and Filters Bar */}
-      <div className="space-y-4 mb-8">
-        <div className="relative max-w-lg">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+      {/* Search and Category Filters Bar */}
+      <div className="space-y-4 mb-8 bg-white border-2 border-[#171717] p-5">
+        <div className="relative max-w-md">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
           <Input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search test name, sample type, or condition (e.g. CBC, Sugar, Thyroid)..."
-            className="pl-10 h-11 text-sm bg-white"
+            placeholder="Search test name, sample type, or condition (e.g. CBC, Sugar, LFT)..."
+            className="pl-9 h-11 text-xs bg-neutral-50 border-2 border-[#171717] rounded-none focus-visible:ring-0"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-foreground"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-neutral-500 hover:text-black uppercase"
             >
               Clear
             </button>
           )}
         </div>
 
-        {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          <button
-            onClick={() => handleCategoryChange('all')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
-              currentCategorySlug === 'all'
-                ? 'bg-primary text-white shadow-xs'
-                : 'bg-white border border-border text-foreground/80 hover:bg-neutral-100'
-            }`}
-          >
-            All Tests ({tests.length})
-          </button>
+        {/* Traditional Category Filter Tabs */}
+        <div className="pt-2 border-t border-neutral-200">
+          <span className="text-[10px] font-black uppercase tracking-wider text-neutral-500 block mb-2">
+            Filter by Department:
+          </span>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <button
+              onClick={() => handleCategoryChange('all')}
+              className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors border ${
+                currentCategorySlug === 'all'
+                  ? 'bg-[#171717] text-secondary border-[#171717]'
+                  : 'bg-white text-neutral-800 border-neutral-300 hover:border-black'
+              }`}
+            >
+              All Tests ({tests.length})
+            </button>
 
-          {categories.map((cat) => {
-            const isSelected = currentCategorySlug === cat.slug;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryChange(cat.slug)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
-                  isSelected
-                    ? 'bg-primary text-white shadow-xs'
-                    : 'bg-white border border-border text-foreground/80 hover:bg-neutral-100'
-                }`}
-              >
-                {cat.name}
-              </button>
-            );
-          })}
+            {categories.map((cat) => {
+              const isSelected = currentCategorySlug === cat.slug;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.slug)}
+                  className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors border ${
+                    isSelected
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-neutral-800 border-neutral-300 hover:border-black'
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -153,60 +155,58 @@ export const TestsPage: React.FC = () => {
           {filteredTests.map((test) => {
             const category = categories.find((c) => c.id === test.category_id);
             return (
-              <Card
+              <div
                 key={test.id}
-                className="flex flex-col justify-between border-border/80 hover:border-primary/40 hover:shadow-md transition-all duration-200"
+                className="bg-white border-2 border-[#171717] p-5 flex flex-col justify-between hover:border-primary transition-colors shadow-[3px_3px_0px_0px_#171717]"
               >
-                <CardContent className="p-6 flex flex-col justify-between h-full">
-                  <div>
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <Badge variant="outline" className="text-[10px] font-semibold bg-neutral-50">
-                        {category?.name || 'Diagnostic'}
-                      </Badge>
-                      <div className="text-right">
-                        <span className="font-heading font-extrabold text-lg text-primary">
-                          {formatPrice(test.price)}
-                        </span>
-                        <span className="block text-[10px] text-muted-foreground">*Demo</span>
-                      </div>
-                    </div>
-
-                    <Link to={`/tests/${test.slug}`}>
-                      <h3 className="font-heading font-bold text-base text-foreground hover:text-primary transition-colors line-clamp-1">
-                        {test.name}
-                      </h3>
-                    </Link>
-
-                    <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
-                      {test.description}
-                    </p>
-
-                    <div className="mt-4 pt-3 border-t border-border/60 space-y-1.5 text-[11px] text-muted-foreground">
-                      <div className="flex items-center gap-1.5">
-                        <Droplet className="w-3.5 h-3.5 text-primary" />
-                        <span>Sample: <strong className="text-foreground">{test.sample_type}</strong></span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-secondary shrink-0" />
-                        <span>Turnaround: <strong className="text-foreground">{test.turnaround_time}</strong></span>
-                      </div>
+                <div>
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-wider bg-neutral-100 border-neutral-400">
+                      {category?.name || 'Diagnostic'}
+                    </Badge>
+                    <div className="text-right">
+                      <span className="font-heading font-black text-xl text-primary block leading-none">
+                        {formatPrice(test.price)}
+                      </span>
+                      <span className="text-[10px] text-neutral-500 font-bold uppercase">*Demo</span>
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-border/60 flex items-center gap-2">
-                    <Link to={`/tests/${test.slug}`} className="flex-1">
-                      <Button variant="outline" size="sm" className="w-full text-xs font-semibold">
-                        View Details
-                      </Button>
-                    </Link>
-                    <Link to={`/book-appointment?test=${test.slug}`} className="flex-1">
-                      <Button size="sm" className="w-full bg-primary hover:bg-primary-600 text-white text-xs font-semibold">
-                        Book Test
-                      </Button>
-                    </Link>
+                  <Link to={`/tests/${test.slug}`}>
+                    <h3 className="font-heading font-black text-base text-[#171717] hover:text-primary transition-colors line-clamp-1 uppercase">
+                      {test.name}
+                    </h3>
+                  </Link>
+
+                  <p className="text-xs text-neutral-600 mt-2 line-clamp-2 leading-relaxed">
+                    {test.description}
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t border-neutral-200 space-y-1.5 text-xs text-neutral-600">
+                    <div className="flex items-center gap-1.5">
+                      <Droplet className="w-3.5 h-3.5 text-primary shrink-0" />
+                      <span>Sample: <strong className="text-[#171717]">{test.sample_type}</strong></span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-secondary shrink-0" />
+                      <span>Turnaround: <strong className="text-[#171717]">{test.turnaround_time}</strong></span>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+
+                <div className="pt-4 mt-4 border-t border-neutral-200 flex items-center gap-2">
+                  <Link to={`/tests/${test.slug}`} className="flex-1">
+                    <Button variant="outline" size="sm" className="w-full text-xs font-bold uppercase tracking-wider h-9 border border-[#171717]">
+                      Details
+                    </Button>
+                  </Link>
+                  <Link to={`/book-appointment?test=${test.slug}`} className="flex-1">
+                    <Button size="sm" className="w-full bg-primary hover:bg-[#D63520] text-white text-xs font-bold uppercase tracking-wider h-9 border border-[#171717]">
+                      Book Test
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             );
           })}
         </div>

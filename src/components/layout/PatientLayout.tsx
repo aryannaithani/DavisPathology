@@ -32,43 +32,43 @@ export const PatientLayout: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex flex-col antialiased">
+    <div className="min-h-screen bg-neutral-100 flex flex-col antialiased">
       {/* Patient Top Bar */}
-      <header className="bg-white border-b border-border sticky top-0 z-40">
+      <header className="bg-white border-b-2 border-[#171717] sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-white">
-                <Activity className="w-5 h-5" />
+            <Link to="/" className="flex items-center gap-2.5">
+              <div className="w-9 h-9 bg-[#171717] border-2 border-[#171717] flex items-center justify-center text-[#F5C542]">
+                <Activity className="w-5 h-5 stroke-[2.5]" />
               </div>
-              <span className="font-heading font-bold text-xl text-foreground tracking-tight">
-                <span className="text-primary">DAVIS</span> LAB
+              <span className="font-heading font-black text-xl text-[#171717] tracking-tight">
+                <span className="text-[#E94B35]">DAVIS</span> LAB
               </span>
             </Link>
-            <span className="hidden sm:inline text-xs font-semibold px-2 py-0.5 rounded bg-muted text-muted-foreground uppercase tracking-wider">
+            <span className="hidden sm:inline text-[10px] font-black px-2 py-0.5 bg-[#F5C542] text-[#171717] uppercase tracking-wider border border-[#171717]">
               Patient Portal
             </span>
           </div>
 
           <div className="flex items-center gap-3">
             <Link to="/book-appointment">
-              <Button size="sm" className="bg-primary text-white text-xs gap-1.5 hidden sm:flex">
+              <Button size="sm" className="bg-[#E94B35] hover:bg-[#d63f2a] text-white text-xs uppercase font-bold tracking-wider rounded-none border border-[#171717] h-9 gap-1.5 hidden sm:flex">
                 <PlusCircle className="w-3.5 h-3.5" />
                 Book New Test
               </Button>
             </Link>
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
               onClick={handleSignOut}
-              className="text-muted-foreground hover:text-destructive gap-1.5"
+              className="rounded-none border border-neutral-300 text-neutral-700 hover:text-[#E94B35] hover:border-[#E94B35] gap-1.5 h-9 text-xs font-bold uppercase tracking-wider"
             >
               <LogOut className="w-4 h-4" />
               <span className="hidden sm:inline">Sign Out</span>
             </Button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-md hover:bg-muted"
+              className="md:hidden p-2 rounded-none border border-neutral-300 hover:bg-neutral-100"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -76,17 +76,17 @@ export const PatientLayout: React.FC = () => {
         </div>
 
         {/* Desktop Sub Navigation */}
-        <div className="hidden md:block bg-white border-t border-border/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-8">
+        <div className="hidden md:block bg-neutral-50 border-t border-neutral-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6">
             {navLinks.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-2 py-3 border-b-2 text-sm font-medium transition-colors ${
+                  `flex items-center gap-2 py-3 border-b-2 text-xs font-bold uppercase tracking-wider transition-colors ${
                     isActive
-                      ? 'border-primary text-primary font-semibold'
-                      : 'border-transparent text-muted-foreground hover:text-foreground hover:border-neutral-300'
+                      ? 'border-[#E94B35] text-[#E94B35] font-black'
+                      : 'border-transparent text-neutral-600 hover:text-[#171717] hover:border-neutral-400'
                   }`
                 }
               >
@@ -99,20 +99,15 @@ export const PatientLayout: React.FC = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border bg-white px-4 py-3 space-y-1">
-            <div className="px-3 py-2 text-xs text-muted-foreground">
-              Signed in as: <strong className="text-foreground">{profile?.full_name || user?.email}</strong>
-            </div>
+          <div className="md:hidden bg-white border-t border-neutral-200 px-4 py-3 space-y-1">
             {navLinks.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
-                  `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium ${
-                    isActive
-                      ? 'bg-primary/10 text-primary font-semibold'
-                      : 'text-foreground hover:bg-muted'
+                  `flex items-center gap-2.5 px-3 py-2 text-xs font-bold uppercase tracking-wider ${
+                    isActive ? 'bg-[#E94B35] text-white' : 'text-neutral-700 hover:bg-neutral-100'
                   }`
                 }
               >
@@ -120,9 +115,9 @@ export const PatientLayout: React.FC = () => {
                 {item.name}
               </NavLink>
             ))}
-            <div className="pt-2 border-t border-border">
+            <div className="pt-2 border-t border-neutral-200">
               <Link to="/book-appointment" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-primary text-white text-xs">
+                <Button className="w-full bg-[#E94B35] text-white text-xs uppercase font-bold rounded-none h-10">
                   Book New Test
                 </Button>
               </Link>
@@ -131,10 +126,17 @@ export const PatientLayout: React.FC = () => {
         )}
       </header>
 
-      {/* Main Content */}
+      {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Outlet />
       </main>
+
+      {/* Simplified Portal Footer */}
+      <footer className="bg-[#171717] text-white border-t-2 border-[#171717] py-4 text-xs text-center">
+        <div className="max-w-7xl mx-auto px-4 text-neutral-400">
+          Davis Pathology Lab Agra • Patient Diagnostic Portal • Helpline: +91 98765 43210
+        </div>
+      </footer>
     </div>
   );
 };

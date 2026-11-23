@@ -6,7 +6,6 @@ import { Activity, Mail, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent } from '@/components/ui/card';
 import { forgotPasswordSchema, ForgotPasswordFormData } from '@/schemas';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
@@ -58,32 +57,40 @@ export const ForgotPasswordPage: React.FC = () => {
       <div className="max-w-md w-full space-y-6">
         <div className="text-center space-y-2">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white shadow-md">
+            <div className="w-12 h-12 bg-[#171717] border-2 border-[#171717] flex items-center justify-center text-[#F5C542]">
               <Activity className="w-7 h-7 stroke-[2.5]" />
             </div>
           </Link>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground">
+          <div className="text-[11px] font-black uppercase tracking-widest text-[#E94B35]">
+            Davis Pathology Lab | Agra
+          </div>
+          <h1 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] tracking-tight">
             Reset Password
           </h1>
-          <p className="text-xs text-muted-foreground">
-            Enter your registered email address and we'll send you a password recovery link.
+          <p className="text-xs text-neutral-600">
+            Enter your registered email address and we'll dispatch password recovery instructions.
           </p>
         </div>
 
-        <Card className="border-border shadow-md">
-          <CardContent className="p-6 sm:p-8 space-y-5">
+        <div className="border-2 border-[#171717] bg-white">
+          <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center justify-between">
+            <span className="text-xs font-black uppercase tracking-wider text-[#171717]">Password Recovery</span>
+            <Mail className="w-4 h-4 text-[#E94B35]" />
+          </div>
+
+          <div className="p-6 sm:p-8 space-y-4">
             {isSubmitted ? (
-              <div className="p-4 rounded-xl bg-green-50 border border-green-200 text-green-900 text-xs space-y-3">
-                <div className="flex items-center gap-2 font-bold text-sm text-green-800">
-                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+              <div className="p-4 bg-green-50 border-2 border-green-600 text-green-900 text-xs space-y-3">
+                <div className="flex items-center gap-2 font-black text-sm text-green-900 uppercase">
+                  <CheckCircle2 className="w-5 h-5 text-green-700" />
                   Reset Instructions Sent
                 </div>
-                <p>
+                <p className="leading-relaxed">
                   If an account exists for the email provided, a password reset link has been dispatched. Please check your inbox and spam folders.
                 </p>
                 <div className="pt-2">
                   <Link to="/login">
-                    <Button variant="outline" className="w-full text-xs">
+                    <Button variant="outline" className="w-full text-xs uppercase font-bold rounded-none border-2 border-[#171717] h-10">
                       Back to Sign In
                     </Button>
                   </Link>
@@ -92,42 +99,42 @@ export const ForgotPasswordPage: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="space-y-1.5">
-                  <Label htmlFor="email" className="text-xs font-semibold">
-                    Registered Email Address <span className="text-primary">*</span>
+                  <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
+                    Registered Email Address <span className="text-[#E94B35]">*</span>
                   </Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="e.g. yourname@example.com"
+                    placeholder="patient@example.com"
+                    className="rounded-none border-2 border-neutral-300 focus:border-[#171717] h-11 text-xs"
                     {...register('email')}
                   />
                   {errors.email && (
-                    <p className="text-[11px] text-destructive">{errors.email.message}</p>
+                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
                   )}
                 </div>
 
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-primary hover:bg-primary-600 text-white font-bold h-11 text-sm shadow-sm gap-2"
+                  className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717]"
                 >
-                  <Mail className="w-4 h-4" />
                   {isLoading ? 'Sending Link...' : 'Send Password Reset Link'}
                 </Button>
+
+                <div className="pt-2 text-center">
+                  <Link
+                    to="/login"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-600 hover:text-[#171717] uppercase"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    Back to Sign In
+                  </Link>
+                </div>
               </form>
             )}
-
-            <div className="pt-4 border-t border-border text-center">
-              <Link
-                to="/login"
-                className="inline-flex items-center text-xs text-muted-foreground hover:text-foreground font-medium"
-              >
-                <ArrowLeft className="w-3.5 h-3.5 mr-1.5" />
-                Return to Login
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

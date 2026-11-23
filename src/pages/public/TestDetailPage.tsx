@@ -6,15 +6,12 @@ import {
   CheckCircle2, 
   CalendarCheck, 
   ArrowLeft, 
-  Share2, 
   AlertTriangle,
-  FileQuestion,
-  FlaskConical 
+  FileQuestion
 } from 'lucide-react';
 import { PageHeader } from '@/components/common/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
 import { useTest, useRelatedTests, useCategories } from '@/hooks/useTests';
 import { formatPrice } from '@/lib/utils';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
@@ -39,12 +36,12 @@ export const TestDetailPage: React.FC = () => {
   if (!test) {
     return (
       <div className="py-20 max-w-3xl mx-auto text-center px-4">
-        <FileQuestion className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-        <h2 className="text-2xl font-bold text-foreground">Diagnostic Test Not Found</h2>
-        <p className="text-muted-foreground text-sm mt-2 mb-6">
+        <FileQuestion className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+        <h2 className="text-2xl font-black text-[#171717] uppercase">Diagnostic Test Not Found</h2>
+        <p className="text-neutral-600 text-xs mt-2 mb-6">
           The test you are looking for does not exist or may have been deactivated.
         </p>
-        <Button onClick={() => navigate('/tests')} variant="outline">
+        <Button onClick={() => navigate('/tests')} variant="outline" className="border-2 border-[#171717]">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Catalogue
         </Button>
@@ -56,7 +53,7 @@ export const TestDetailPage: React.FC = () => {
     <div className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <PageHeader
         title={test.name}
-        subtitle={`Category: ${category?.name || 'General Pathology'}`}
+        subtitle={`Department: ${category?.name || 'Clinical Pathology'}`}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Tests', href: '/tests' },
@@ -64,98 +61,98 @@ export const TestDetailPage: React.FC = () => {
         ]}
       />
 
-      {/* Demonstration Alert */}
-      <div className="mb-8 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
-        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+      {/* Notice Strip */}
+      <div className="mb-8 p-3.5 border-2 border-secondary bg-secondary/15 text-xs text-[#171717] flex items-start gap-2.5">
+        <AlertTriangle className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
         <div>
-          <strong>Clinical Verification Required:</strong> Preparation instructions, sample requirements, and prices shown are demonstration values. Please consult your physician or laboratory technician before fasting or sample submission.
+          <strong className="font-extrabold uppercase">Laboratory Verification Notice:</strong> Fasting guidelines, specimen types, and turnaround metrics are demonstration records. Please verify fasting intervals with our laboratory team prior to blood draw.
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        {/* Main Content Details */}
-        <div className="lg:col-span-8 space-y-8">
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-border shadow-xs space-y-6">
-            <div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Main Test Specifications (8 cols) */}
+        <div className="lg:col-span-8 space-y-6">
+          <div className="bg-white border-2 border-[#171717] p-6 sm:p-8 space-y-6 shadow-[3px_3px_0px_0px_#171717]">
+            <div className="border-b-2 border-neutral-200 pb-4">
               <div className="flex items-center gap-2 mb-2">
-                <Badge variant="outline" className="text-xs bg-neutral-50 font-semibold">
+                <Badge variant="outline" className="text-[10px] bg-neutral-100 font-bold uppercase tracking-wider">
                   {category?.name}
                 </Badge>
-                <Badge variant="outline" className="text-xs text-green-700 bg-green-50 border-green-200">
-                  Active in Catalogue
-                </Badge>
+                <span className="text-[10px] font-bold text-green-800 bg-green-100 border border-green-300 px-2 py-0.5 uppercase tracking-wider">
+                  ACTIVE SPECIFICATION
+                </span>
               </div>
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground">
+              <h2 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] uppercase tracking-tight">
                 {test.name}
               </h2>
             </div>
 
             <div>
-              <h3 className="font-heading font-bold text-base text-foreground mb-2">
-                Test Description
+              <h3 className="text-xs font-black uppercase tracking-wider text-primary mb-2">
+                Clinical Description & Indications
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-neutral-700 leading-relaxed font-normal">
                 {test.description}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-border">
-              <div className="p-4 rounded-xl bg-neutral-50 border border-border/80">
-                <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider mb-1">
+            {/* Specimen and Turnaround Details in Rectangular Boxes */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="p-4 border-2 border-neutral-300 bg-neutral-50">
+                <div className="flex items-center gap-2 text-primary font-black text-xs uppercase tracking-wider mb-1">
                   <Droplet className="w-4 h-4" />
                   Specimen / Sample Type
                 </div>
-                <p className="text-sm font-semibold text-foreground">
+                <p className="text-sm font-bold text-[#171717]">
                   {test.sample_type}
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Collected with sterile single-use vacutainer.
+                <p className="text-[11px] text-neutral-500 mt-1">
+                  Single-use vacuum blood tube collection.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-neutral-50 border border-border/80">
-                <div className="flex items-center gap-2 text-secondary font-bold text-xs uppercase tracking-wider mb-1">
-                  <Clock className="w-4 h-4 text-amber-700" />
-                  <span className="text-amber-800">Expected Turnaround</span>
+              <div className="p-4 border-2 border-neutral-300 bg-neutral-50">
+                <div className="flex items-center gap-2 text-amber-700 font-black text-xs uppercase tracking-wider mb-1">
+                  <Clock className="w-4 h-4" />
+                  Turnaround Timeline
                 </div>
-                <p className="text-sm font-semibold text-foreground">
+                <p className="text-sm font-bold text-[#171717]">
                   {test.turnaround_time}
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Report uploaded directly to patient account.
+                <p className="text-[11px] text-neutral-500 mt-1">
+                  Uploaded to authenticated portal upon pathologist signoff.
                 </p>
               </div>
             </div>
 
-            <div>
-              <h3 className="font-heading font-bold text-base text-foreground mb-2">
-                Patient Preparation Guidelines
+            {/* Preparation Requirements */}
+            <div className="border-t-2 border-neutral-200 pt-4">
+              <h3 className="text-xs font-black uppercase tracking-wider text-[#171717] mb-2">
+                Patient Fasting & Preparation Instructions
               </h3>
-              <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 text-xs sm:text-sm text-foreground leading-relaxed">
+              <div className="p-4 bg-amber-50/70 border-2 border-amber-300 text-xs sm:text-sm text-neutral-900 leading-relaxed font-medium">
                 {test.preparation}
               </div>
             </div>
           </div>
 
-          {/* Related Tests */}
+          {/* Related Investigations */}
           {relatedTests.length > 0 && (
-            <div>
-              <h3 className="font-heading font-bold text-xl text-foreground mb-4">
+            <div className="bg-white border-2 border-[#171717] p-6 space-y-4">
+              <h3 className="font-heading font-black text-base text-[#171717] uppercase tracking-wide border-b border-neutral-200 pb-2">
                 Related Investigations in {category?.name}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {relatedTests.map((rel) => (
-                  <Link key={rel.id} to={`/tests/${rel.slug}`} className="group">
-                    <Card className="h-full border-border hover:border-primary/40 hover:shadow-xs transition-all">
-                      <CardContent className="p-4">
-                        <div className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors line-clamp-1">
-                          {rel.name}
-                        </div>
-                        <div className="text-primary font-bold text-xs mt-2">
-                          {formatPrice(rel.price)}
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <Link key={rel.id} to={`/tests/${rel.slug}`} className="block">
+                    <div className="border border-neutral-300 p-3 hover:border-black hover:bg-neutral-50 transition-colors">
+                      <div className="font-bold text-xs text-[#171717] truncate uppercase">
+                        {rel.name}
+                      </div>
+                      <div className="text-primary font-black text-xs mt-1">
+                        {formatPrice(rel.price)}
+                      </div>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -163,48 +160,56 @@ export const TestDetailPage: React.FC = () => {
           )}
         </div>
 
-        {/* Sidebar Booking Box */}
-        <div className="lg:col-span-4">
-          <div className="sticky top-28 bg-neutral-900 text-white p-6 sm:p-8 rounded-2xl border border-neutral-800 shadow-xl space-y-6">
-            <div>
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-secondary">
-                Standard Test Fee
+        {/* Sidebar Booking Box (4 cols) - Strong Black with Yellow/Red Accents */}
+        <div className="lg:col-span-4 sticky top-24 space-y-4">
+          <div className="bg-[#171717] text-white border-2 border-black p-6 sm:p-7 space-y-5 shadow-[4px_4px_0px_0px_#E94B35]">
+            <div className="border-b border-neutral-700 pb-4">
+              <span className="text-[10px] font-black uppercase tracking-widest text-secondary block mb-1">
+                Investigation Tariff
               </span>
-              <div className="flex items-baseline gap-2 mt-1">
-                <span className="font-heading font-extrabold text-3xl sm:text-4xl text-secondary">
+              <div className="flex items-baseline gap-2">
+                <span className="font-heading font-black text-3xl sm:text-4xl text-secondary">
                   {formatPrice(test.price)}
                 </span>
-                <span className="text-xs text-neutral-400">*(Demonstration)</span>
+                <span className="text-[11px] text-neutral-400 font-semibold">*Demo Rate</span>
               </div>
             </div>
 
-            <div className="space-y-3 text-xs text-neutral-300 pt-3 border-t border-neutral-800">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+            <div className="space-y-2.5 text-xs text-neutral-300">
+              <div className="flex items-start gap-2">
+                <span className="text-secondary font-bold">■</span>
                 <span>Home sample collection available in Agra</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
-                <span>Digital PDF report download upon completion</span>
+              <div className="flex items-start gap-2">
+                <span className="text-secondary font-bold">■</span>
+                <span>Direct PDF download from patient dashboard</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
-                <span>Strict quality-checked pathology procedures</span>
+              <div className="flex items-start gap-2">
+                <span className="text-secondary font-bold">■</span>
+                <span>Calibrated laboratory equipment protocols</span>
               </div>
             </div>
 
-            <Link to={`/book-appointment?test=${test.slug}`} className="block">
-              <Button className="w-full bg-primary hover:bg-primary-600 text-white font-bold h-12 text-sm shadow-md gap-2">
-                <CalendarCheck className="w-4 h-4" />
-                Book This Test Now
-              </Button>
-            </Link>
+            <div className="pt-2 space-y-2.5">
+              <Link to={`/book-appointment?test=${test.slug}`} className="block">
+                <Button className="w-full bg-primary hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs h-11 border border-white">
+                  <CalendarCheck className="w-4 h-4 mr-2" />
+                  BOOK THIS TEST
+                </Button>
+              </Link>
+              <Link to="/contact" className="block">
+                <Button variant="outline" className="w-full bg-transparent border border-neutral-600 text-neutral-200 hover:bg-neutral-800 hover:text-white font-bold uppercase tracking-wider text-xs h-10">
+                  Enquire at Lab Counter
+                </Button>
+              </Link>
+            </div>
+          </div>
 
-            <Link to="/contact" className="block">
-              <Button variant="outline" className="w-full border-neutral-700 text-neutral-300 hover:text-white hover:bg-neutral-800 text-xs">
-                Inquire about this Test
-              </Button>
-            </Link>
+          <div className="bg-white border-2 border-[#171717] p-4 text-xs space-y-1">
+            <span className="font-bold text-[#171717] uppercase block">Need Assistance?</span>
+            <p className="text-neutral-600">
+              Call our reception counter at <strong>+91 98765 43210</strong> or visit Shop No. 4, Millenium Complex, Agra.
+            </p>
           </div>
         </div>
       </div>
