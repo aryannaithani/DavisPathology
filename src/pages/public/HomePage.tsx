@@ -35,98 +35,102 @@ export const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#F8F8F6]">
       {/* ========================================================================
-          1. FULL-WIDTH REDESIGNED HERO SECTION WITH AUTHENTIC LAB PHOTOGRAPHY
+          1. HERO SECTION — Left text fading into right lab photograph
+          Inspired by the AIIMS reference: clean text on left, building photo on right
           ======================================================================== */}
-      <section className="relative w-full bg-[#171717] text-white border-b-4 border-primary overflow-hidden">
-        {/* Authentic Background Photograph of Laboratory Technologists */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1579152276502-545a248a9931?auto=format&fit=crop&w=2000&q=85')`,
-          }}
-        />
+      <section className="relative w-full overflow-hidden bg-white border-b-4 border-[#E94B35]">
+        <div className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] flex items-stretch">
 
-        {/* High-Contrast Dark Black Overlay for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#171717]/95 via-[#171717]/90 to-[#171717]/80" />
-
-        {/* Decorative Top Accent Lines (Orange-Red & Yellow) */}
-        <div className="relative z-10 w-full flex h-1">
-          <div className="w-1/3 bg-primary" />
-          <div className="w-1/3 bg-secondary" />
-          <div className="w-1/3 bg-[#171717]" />
-        </div>
-
-        {/* Hero Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 sm:pt-24 sm:pb-20">
-          <div className="max-w-3xl space-y-6">
+          {/* Left Content Area (transparent on mobile so the low-opacity lab image shows through, gradient on desktop) */}
+          <div className="relative z-20 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-12 sm:py-16 bg-transparent lg:bg-gradient-to-r lg:from-white lg:via-white lg:to-transparent">
             
-            {/* Eyebrow Label */}
-            <div className="inline-flex items-center gap-2 border-2 border-secondary bg-[#171717]/90 px-3 py-1">
-              <span className="w-2 h-2 bg-secondary" />
-              <span className="text-secondary font-heading font-black text-xs uppercase tracking-widest">
-                DAVIS PATHOLOGY LAB | AGRA
+            {/* Lab Emblem / Crest */}
+            <div className="mb-6 flex items-center gap-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#171717] border-2 border-[#F5C542] flex items-center justify-center text-[#F5C542] shrink-0">
+                <Activity className="w-10 h-10 sm:w-12 sm:h-12 stroke-[2]" />
+              </div>
+              <div className="hidden sm:block text-[10px] font-bold text-neutral-500 uppercase tracking-widest leading-snug">
+                Diagnostic Laboratory<br />
+                Millenium Complex, Agra
+              </div>
+            </div>
+
+            {/* Lab Name — Large, bold, like AIIMS blue name */}
+            <h1 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-[#E94B35] tracking-tight leading-tight uppercase">
+              Davis Pathology Lab,<br />
+              <span className="text-[#171717]">Agra</span>
+            </h1>
+
+            {/* Slogan / Description */}
+            <h2 className="mt-4 font-heading font-bold text-base sm:text-lg lg:text-xl text-[#171717] leading-snug max-w-lg">
+              Accurate Diagnostics. Affordable Healthcare. Quick Results —{' '}
+              <span className="text-neutral-600 font-normal">
+                Your trusted neighbourhood pathology laboratory for reliable blood testing and diagnostic services.
+              </span>
+            </h2>
+
+            {/* Value Badges */}
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="bg-[#171717] text-[#F5C542] text-[10px] font-black uppercase tracking-widest px-3 py-1.5">
+                ✓ Accurate
+              </span>
+              <span className="bg-[#E94B35] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5">
+                ✓ Affordable
+              </span>
+              <span className="bg-[#F5C542] text-[#171717] text-[10px] font-black uppercase tracking-widest px-3 py-1.5">
+                ✓ Quick
               </span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="font-heading font-black text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1] uppercase">
-              Accurate Testing.<br />
-              <span className="text-secondary">Affordable Healthcare.</span><br />
-              Results You Can Trust.
-            </h1>
-
-            {/* Subtle Divider Line */}
-            <div className="w-24 h-1 bg-primary" />
-
-            {/* Supporting Description */}
-            <p className="text-base sm:text-lg text-neutral-200 leading-relaxed max-w-2xl font-normal">
-              Your health deserves reliable answers. Experience diagnostic services focused on accuracy, affordability and timely reporting.
-            </p>
-
-            {/* Action Buttons (Rectangular, High Contrast) */}
-            <div className="flex flex-wrap items-center gap-4 pt-3">
+            {/* CTA Buttons */}
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link to="/book-appointment">
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-sm h-12 px-7 border-2 border-white shadow-[4px_4px_0px_0px_#FFFFFF]"
+                  className="bg-[#E94B35] hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs h-11 px-6 border-2 border-[#171717] rounded-none"
                 >
                   <CalendarCheck className="w-4 h-4 mr-2" />
-                  BOOK A TEST
+                  Book a Test
                 </Button>
               </Link>
               <Link to="/tests">
                 <Button 
                   size="lg" 
-                  className="bg-secondary hover:bg-[#E6AD1E] text-[#171717] font-extrabold uppercase tracking-wider text-sm h-12 px-7 border-2 border-secondary shadow-[4px_4px_0px_0px_#171717]"
+                  variant="outline"
+                  className="text-[#171717] font-extrabold uppercase tracking-wider text-xs h-11 px-6 border-2 border-[#171717] hover:bg-[#171717] hover:text-white rounded-none"
                 >
                   <Search className="w-4 h-4 mr-2" />
-                  EXPLORE OUR SERVICES
+                  Explore Services
                 </Button>
               </Link>
             </div>
 
-            {/* Facility Location Strip */}
-            <div className="pt-2 flex items-center gap-2 text-xs text-neutral-300">
-              <MapPin className="w-4 h-4 text-primary shrink-0" />
+            {/* Address line */}
+            <div className="mt-5 flex items-center gap-2 text-xs text-neutral-500">
+              <MapPin className="w-3.5 h-3.5 text-[#E94B35] shrink-0" />
               <span>Shop No. 4, Millenium Complex, Bhagwan Talkies, Agra, Uttar Pradesh</span>
             </div>
-
           </div>
-        </div>
 
-        {/* Bottom Information Strip Anchored to the Hero */}
-        <div className="relative z-10 w-full bg-[#171717] border-t-2 border-neutral-700 py-3.5 px-4">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs tracking-wider uppercase font-bold">
-            <div className="flex items-center gap-3 text-white">
-              <span className="text-secondary font-black tracking-widest text-sm">ACCURATE</span>
-              <span className="text-neutral-500">|</span>
-              <span className="text-secondary font-black tracking-widest text-sm">AFFORDABLE</span>
-              <span className="text-neutral-500">|</span>
-              <span className="text-secondary font-black tracking-widest text-sm">QUICK</span>
-            </div>
-            <div className="text-neutral-400 text-[11px] font-semibold lowercase">
-              *demonstration diagnostic portal • verified local pathology in agra
-            </div>
+          {/* Right: Laboratory Photograph with Left-Fade */}
+          <div className="hidden lg:block absolute top-0 right-0 w-[55%] h-full">
+            <img
+              src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1400&q=85"
+              alt="Pathology laboratory professionals working with diagnostic equipment"
+              className="w-full h-full object-cover"
+            />
+            {/* Gradient fade from left (white) into the image */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent" />
+          </div>
+
+          {/* Mobile: Show image as a low-opacity full-width background */}
+          <div className="lg:hidden absolute inset-0 z-0 w-full h-full">
+            <img
+              src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=75"
+              alt="Laboratory"
+              className="w-full h-full object-cover opacity-15"
+            />
+            <div className="absolute inset-0 bg-white/60" />
           </div>
         </div>
       </section>
@@ -218,7 +222,7 @@ export const HomePage: React.FC = () => {
               <Button 
                 variant="outline" 
                 size="sm"
-                className="h-9 border-2 border-[#171717] font-bold text-xs uppercase tracking-wider text-[#171717] hover:bg-[#171717] hover:text-white"
+                className="h-9 border-2 border-[#171717] font-bold text-xs uppercase tracking-wider text-[#171717] hover:bg-[#171717] hover:text-white rounded-none"
               >
                 <span>View Full Test Catalogue</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -262,7 +266,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================================
-          4. POPULAR HEALTH PACKAGES (White bg, Black text, Red price, Yellow badges)
+          4. POPULAR HEALTH PACKAGES
           ======================================================================== */}
       <section className="py-14 sm:py-16 bg-white border-b-2 border-[#171717]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -281,7 +285,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {demoPackages.map((pkg, index) => {
-              const isPopular = index === 1; // Complete Health Checkup
+              const isPopular = index === 1;
               return (
                 <div
                   key={pkg.id}
@@ -291,7 +295,6 @@ export const HomePage: React.FC = () => {
                       : 'border-neutral-300 hover:border-neutral-800'
                   }`}
                 >
-                  {/* Yellow Highlight Strip for Featured Package */}
                   {isPopular && (
                     <div className="absolute -top-3.5 left-6 bg-secondary text-[#171717] text-[10px] font-black uppercase tracking-widest px-3 py-0.5 border border-[#171717]">
                       ★ MOST RECOMMENDED
@@ -306,7 +309,6 @@ export const HomePage: React.FC = () => {
                       {pkg.description}
                     </p>
 
-                    {/* Price Block: Orange-Red */}
                     <div className="my-5 p-3.5 bg-neutral-50 border-y border-neutral-200">
                       <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">
                         Package Fee
@@ -319,7 +321,6 @@ export const HomePage: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Tests Checklist */}
                     <div className="space-y-2 mb-6">
                       <div className="text-[11px] font-black uppercase tracking-wider text-[#171717]">
                         Included Tests:
@@ -338,7 +339,7 @@ export const HomePage: React.FC = () => {
                   <div>
                     <Link to={`/book-appointment?package=${pkg.slug}`}>
                       <Button
-                        className={`w-full font-extrabold uppercase tracking-wider text-xs h-11 border border-[#171717] ${
+                        className={`w-full font-extrabold uppercase tracking-wider text-xs h-11 border border-[#171717] rounded-none ${
                           isPopular
                             ? 'bg-secondary hover:bg-[#E6AD1E] text-[#171717]'
                             : 'bg-primary hover:bg-[#D63520] text-white'
@@ -365,7 +366,6 @@ export const HomePage: React.FC = () => {
       <section className="border-b-2 border-[#171717]">
         <div className="grid grid-cols-1 md:grid-cols-3">
           
-          {/* Column 1: ACCURATE (Black Background, Yellow Accents, White Text) */}
           <div className="bg-[#171717] text-white p-8 sm:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col justify-between">
             <div>
               <div className="w-10 h-10 bg-secondary text-[#171717] font-black flex items-center justify-center mb-6 border border-white">
@@ -386,7 +386,6 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: AFFORDABLE (Orange-Red Background, White & Yellow Text) */}
           <div className="bg-primary text-white p-8 sm:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col justify-between">
             <div>
               <div className="w-10 h-10 bg-[#171717] text-white font-black flex items-center justify-center mb-6 border border-white">
@@ -407,7 +406,6 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 3: QUICK (Yellow Background, Black Text) */}
           <div className="bg-secondary text-[#171717] p-8 sm:p-10 flex flex-col justify-between">
             <div>
               <div className="w-10 h-10 bg-[#171717] text-secondary font-black flex items-center justify-center mb-6 border border-black">
@@ -432,7 +430,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================================
-          6. APPOINTMENT CTA (Strong Black Section with White & Yellow Text)
+          6. APPOINTMENT CTA
           ======================================================================== */}
       <section className="bg-[#171717] text-white py-14 sm:py-16 border-b-2 border-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -450,7 +448,7 @@ export const HomePage: React.FC = () => {
               <Link to="/book-appointment">
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs sm:text-sm h-12 px-8 border-2 border-white"
+                  className="bg-primary hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs sm:text-sm h-12 px-8 border-2 border-white rounded-none"
                 >
                   BOOK YOUR APPOINTMENT
                 </Button>
@@ -459,7 +457,7 @@ export const HomePage: React.FC = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="bg-transparent border-2 border-secondary text-secondary hover:bg-secondary hover:text-[#171717] font-extrabold uppercase tracking-wider text-xs sm:text-sm h-12 px-7"
+                  className="bg-transparent border-2 border-secondary text-secondary hover:bg-secondary hover:text-[#171717] font-extrabold uppercase tracking-wider text-xs sm:text-sm h-12 px-7 rounded-none"
                 >
                   CONTACT OUR AGRA LAB
                 </Button>
@@ -470,7 +468,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================================
-          7. LOCATION & MAP (Clean 2-Column Traditional Layout)
+          7. LOCATION & MAP
           ======================================================================== */}
       <section className="py-14 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -486,7 +484,6 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            {/* Left Column: Address, Hours, and Action */}
             <div className="lg:col-span-5 border-2 border-[#171717] p-6 sm:p-8 bg-[#F8F8F6] flex flex-col justify-between space-y-6">
               <div className="space-y-4">
                 <div>
@@ -528,7 +525,7 @@ export const HomePage: React.FC = () => {
                   className="block"
                 >
                   <Button 
-                    className="w-full bg-[#171717] hover:bg-black text-white font-extrabold uppercase tracking-wider text-xs h-11 border border-black"
+                    className="w-full bg-[#171717] hover:bg-black text-white font-extrabold uppercase tracking-wider text-xs h-11 border border-black rounded-none"
                   >
                     <MapPin className="w-4 h-4 mr-2 text-secondary" />
                     GET GOOGLE MAPS DIRECTIONS
@@ -537,7 +534,6 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Embedded Map with Crisp Border */}
             <div className="lg:col-span-7 h-80 sm:h-auto min-h-[320px] border-2 border-[#171717] overflow-hidden bg-neutral-200">
               <iframe
                 title="Davis Pathology Lab Location Map"
