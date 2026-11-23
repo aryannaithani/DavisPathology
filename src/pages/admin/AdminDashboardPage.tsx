@@ -104,7 +104,7 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
               <p className="text-[10px] text-muted-foreground mt-0.5">Database verified records</p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+            <div className="w-12 h-12 bg-neutral-100 text-neutral-800 border border-neutral-300 flex items-center justify-center">
               <CalendarDays className="w-6 h-6" />
             </div>
           </CardContent>
@@ -121,7 +121,7 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
               <p className="text-[10px] text-muted-foreground mt-0.5">Awaiting staff confirmation</p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+            <div className="w-12 h-12 bg-amber-50 text-amber-700 border border-amber-300 flex items-center justify-center">
               <Clock className="w-6 h-6" />
             </div>
           </CardContent>
@@ -138,7 +138,7 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
               <p className="text-[10px] text-muted-foreground mt-0.5">Reported & delivered</p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
+            <div className="w-12 h-12 bg-green-50 text-green-700 border border-green-300 flex items-center justify-center">
               <CheckCircle2 className="w-6 h-6" />
             </div>
           </CardContent>
@@ -155,7 +155,7 @@ export const AdminDashboardPage: React.FC = () => {
               </div>
               <p className="text-[10px] text-muted-foreground mt-0.5">From fulfilled orders</p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-red-50 text-primary flex items-center justify-center">
+            <div className="w-12 h-12 bg-red-50 text-primary border border-red-200 flex items-center justify-center">
               <IndianRupee className="w-6 h-6" />
             </div>
           </CardContent>
@@ -186,9 +186,9 @@ export const AdminDashboardPage: React.FC = () => {
                     type="monotone"
                     dataKey="count"
                     name="Bookings"
-                    stroke="#E94B35"
+                    stroke="#F1654C"
                     strokeWidth={3}
-                    dot={{ r: 4, fill: '#E94B35' }}
+                    dot={{ r: 4, fill: '#F1654C' }}
                     activeDot={{ r: 6 }}
                   />
                 </LineChart>

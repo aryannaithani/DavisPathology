@@ -44,12 +44,12 @@ export const PatientDashboardPage: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-neutral-900 to-neutral-800 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-md">
+      <div className="bg-[#171717] text-white border-2 border-[#171717] rounded-none p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-[3px_3px_0px_0px_#F1654C]">
         <div>
           <span className="text-[11px] font-bold text-secondary uppercase tracking-wider">
             Patient Portal
           </span>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl text-white mt-1">
+          <h1 className="font-heading font-black text-2xl sm:text-3xl text-white mt-1">
             Welcome, {profile?.full_name || user?.email?.split('@')[0] || 'Patient'}
           </h1>
           <p className="text-neutral-300 text-xs sm:text-sm mt-1 max-w-xl">
@@ -58,7 +58,7 @@ export const PatientDashboardPage: React.FC = () => {
         </div>
 
         <Link to="/book-appointment">
-          <Button className="bg-primary hover:bg-primary-600 text-white font-bold text-sm shadow-md gap-2 whitespace-nowrap">
+          <Button className="bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold text-xs uppercase tracking-wider rounded-none h-11 px-5 border border-[#171717] gap-2 whitespace-nowrap shadow-[2px_2px_0px_0px_#F5C542]">
             <PlusCircle className="w-4 h-4" />
             Book New Investigation
           </Button>
@@ -67,53 +67,47 @@ export const PatientDashboardPage: React.FC = () => {
 
       {/* Metrics Row */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <Card className="border-border">
-          <CardContent className="p-6 flex items-center justify-between">
-            <div>
-              <span className="text-xs text-muted-foreground font-semibold uppercase">
-                Active Bookings
-              </span>
-              <div className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground mt-1">
-                {pendingBookings.length}
-              </div>
+        <div className="bg-white border-2 border-[#171717] border-t-4 border-t-[#F1654C] p-6 flex items-center justify-between shadow-[3px_3px_0px_0px_#171717]">
+          <div>
+            <span className="text-xs text-neutral-500 font-bold uppercase tracking-wider">
+              Active Bookings
+            </span>
+            <div className="font-heading font-black text-2xl sm:text-3xl text-[#171717] mt-1">
+              {pendingBookings.length}
             </div>
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-              <Clock className="w-6 h-6" />
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+          <div className="w-12 h-12 bg-[#F1654C]/15 border border-[#F1654C] flex items-center justify-center text-[#F1654C]">
+            <Clock className="w-6 h-6" />
+          </div>
+        </div>
 
-        <Card className="border-border">
-          <CardContent className="p-6 flex items-center justify-between">
-            <div>
-              <span className="text-xs text-muted-foreground font-semibold uppercase">
-                Total Bookings
-              </span>
-              <div className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground mt-1">
-                {bookings.length}
-              </div>
+        <div className="bg-white border-2 border-[#171717] border-t-4 border-t-[#F5C542] p-6 flex items-center justify-between shadow-[3px_3px_0px_0px_#171717]">
+          <div>
+            <span className="text-xs text-neutral-500 font-bold uppercase tracking-wider">
+              Total Bookings
+            </span>
+            <div className="font-heading font-black text-2xl sm:text-3xl text-[#171717] mt-1">
+              {bookings.length}
             </div>
-            <div className="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center text-foreground">
-              <CalendarDays className="w-6 h-6" />
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+          <div className="w-12 h-12 bg-[#F5C542]/20 border border-[#F5C542] flex items-center justify-center text-[#171717]">
+            <CalendarDays className="w-6 h-6" />
+          </div>
+        </div>
 
-        <Card className="border-border">
-          <CardContent className="p-6 flex items-center justify-between">
-            <div>
-              <span className="text-xs text-muted-foreground font-semibold uppercase">
-                Available Reports
-              </span>
-              <div className="font-heading font-extrabold text-2xl sm:text-3xl text-secondary mt-1">
-                {reports.length}
-              </div>
+        <div className="bg-white border-2 border-[#171717] border-t-4 border-t-[#171717] p-6 flex items-center justify-between shadow-[3px_3px_0px_0px_#171717]">
+          <div>
+            <span className="text-xs text-neutral-500 font-bold uppercase tracking-wider">
+              Available Reports
+            </span>
+            <div className="font-heading font-black text-2xl sm:text-3xl text-[#171717] mt-1">
+              {reports.length}
             </div>
-            <div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
-              <FileText className="w-6 h-6" />
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+          <div className="w-12 h-12 bg-[#171717] text-[#F5C542] flex items-center justify-center">
+            <FileText className="w-6 h-6" />
+          </div>
+        </div>
       </div>
 
       {/* Two Columns: Recent Bookings & Ready Reports */}
@@ -130,7 +124,7 @@ export const PatientDashboardPage: React.FC = () => {
           </div>
 
           {isLoadingBookings ? (
-            <div className="p-8 text-center bg-white rounded-xl border border-border">
+            <div className="p-8 text-center bg-white border border-border">
               <LoadingSpinner size="sm" text="Loading appointments..." />
             </div>
           ) : bookings.length === 0 ? (
@@ -194,7 +188,7 @@ export const PatientDashboardPage: React.FC = () => {
           </div>
 
           {isLoadingReports ? (
-            <div className="p-8 text-center bg-white rounded-xl border border-border">
+            <div className="p-8 text-center bg-white border border-border">
               <LoadingSpinner size="sm" text="Checking for reports..." />
             </div>
           ) : reports.length === 0 ? (

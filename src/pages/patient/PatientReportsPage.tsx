@@ -42,10 +42,10 @@ export const PatientReportsPage: React.FC = () => {
       />
 
       {/* Security notice */}
-      <div className="p-4 rounded-xl bg-neutral-900 text-white flex items-start gap-3 text-xs border border-neutral-800">
+      <div className="p-4 rounded-none bg-[#171717] text-white flex items-start gap-3 text-xs border-2 border-[#171717]">
         <Lock className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
         <div>
-          <strong className="text-secondary font-semibold">Strict Confidentiality:</strong> All laboratory investigation files are encrypted in private storage. Downloads are authorized solely through authenticated temporary signed tokens.
+          <strong className="text-secondary font-bold uppercase tracking-wider">Patient Confidentiality:</strong> All laboratory investigation files are securely encrypted. Only you and authorized laboratory personnel can view or download these records.
         </div>
       </div>
 

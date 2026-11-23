@@ -4,7 +4,7 @@ import type { ContactEnquiry } from '@/types';
 let demoEnquiries: ContactEnquiry[] = [
   {
     id: 'demo-enq-1',
-    name: 'Dr. Ramesh Chandra (Demo)',
+    name: 'Dr. Ramesh Chandra',
     email: 'dr.ramesh@example.com',
     phone: '9876500010',
     subject: 'Home collection enquiry for elderly patient',
@@ -14,7 +14,7 @@ let demoEnquiries: ContactEnquiry[] = [
   },
   {
     id: 'demo-enq-2',
-    name: 'Anita Verma (Demo)',
+    name: 'Anita Verma',
     email: 'anita.v@example.com',
     phone: '9876500011',
     subject: 'Complete health checkup package details',

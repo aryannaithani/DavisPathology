@@ -62,10 +62,10 @@ export const TestDetailPage: React.FC = () => {
       />
 
       {/* Notice Strip */}
-      <div className="mb-8 p-3.5 border-2 border-secondary bg-secondary/15 text-xs text-[#171717] flex items-start gap-2.5">
+      <div className="mb-8 p-3.5 border-2 border-[#F5C542] bg-[#F5C542]/20 text-xs text-[#171717] flex items-start gap-2.5">
         <AlertTriangle className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
         <div>
-          <strong className="font-extrabold uppercase">Laboratory Verification Notice:</strong> Fasting guidelines, specimen types, and turnaround metrics are demonstration records. Please verify fasting intervals with our laboratory team prior to blood draw.
+          <strong className="font-extrabold uppercase">Sample Collection Guidelines:</strong> Please review preparation notes below. Our phlebotomy team follows strict barcoding and sterile blood draw procedures.
         </div>
       </div>
 
@@ -162,16 +162,16 @@ export const TestDetailPage: React.FC = () => {
 
         {/* Sidebar Booking Box (4 cols) - Strong Black with Yellow/Red Accents */}
         <div className="lg:col-span-4 sticky top-24 space-y-4">
-          <div className="bg-[#171717] text-white border-2 border-black p-6 sm:p-7 space-y-5 shadow-[4px_4px_0px_0px_#E94B35]">
+          <div className="bg-[#171717] text-white border-2 border-black p-6 sm:p-7 space-y-5 shadow-[4px_4px_0px_0px_#F1654C]">
             <div className="border-b border-neutral-700 pb-4">
-              <span className="text-[10px] font-black uppercase tracking-widest text-secondary block mb-1">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#F5C542] block mb-1">
                 Investigation Tariff
               </span>
               <div className="flex items-baseline gap-2">
-                <span className="font-heading font-black text-3xl sm:text-4xl text-secondary">
+                <span className="font-heading font-black text-3xl sm:text-4xl text-[#F5C542]">
                   {formatPrice(test.price)}
                 </span>
-                <span className="text-[11px] text-neutral-400 font-semibold">*Demo Rate</span>
+                <span className="text-[11px] text-neutral-400 font-semibold">*Standard Tariff</span>
               </div>
             </div>
 
@@ -192,7 +192,7 @@ export const TestDetailPage: React.FC = () => {
 
             <div className="pt-2 space-y-2.5">
               <Link to={`/book-appointment?test=${test.slug}`} className="block">
-                <Button className="w-full bg-primary hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs h-11 border border-white">
+                <Button className="w-full bg-primary hover:bg-[#DF472B] text-white font-extrabold uppercase tracking-wider text-xs h-11 border border-white">
                   <CalendarCheck className="w-4 h-4 mr-2" />
                   BOOK THIS TEST
                 </Button>

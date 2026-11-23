@@ -61,7 +61,7 @@ export const RegisterPage: React.FC = () => {
               <Activity className="w-7 h-7 stroke-[2.5]" />
             </div>
           </Link>
-          <div className="text-[11px] font-black uppercase tracking-widest text-[#E94B35]">
+          <div className="text-[11px] font-black uppercase tracking-widest text-[#F1654C]">
             Davis Pathology Lab | Agra
           </div>
           <h1 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] tracking-tight">
@@ -75,14 +75,14 @@ export const RegisterPage: React.FC = () => {
         <div className="border-2 border-[#171717] bg-white">
           <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center justify-between">
             <span className="text-xs font-black uppercase tracking-wider text-[#171717]">Registration Details</span>
-            <UserPlus className="w-4 h-4 text-[#E94B35]" />
+            <UserPlus className="w-4 h-4 text-[#F1654C]" />
           </div>
 
           <div className="p-6 sm:p-8 space-y-4">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-1.5">
                 <Label htmlFor="full_name" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                  Full Name <span className="text-[#E94B35]">*</span>
+                  Full Name <span className="text-[#F1654C]">*</span>
                 </Label>
                 <Input
                   id="full_name"
@@ -91,13 +91,13 @@ export const RegisterPage: React.FC = () => {
                   {...register('full_name')}
                 />
                 {errors.full_name && (
-                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.full_name.message}</p>
+                  <p className="text-[11px] text-[#F1654C] font-semibold">{errors.full_name.message}</p>
                 )}
               </div>
 
               <div className="space-y-1.5">
                 <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                  Email Address <span className="text-[#E94B35]">*</span>
+                  Email Address <span className="text-[#F1654C]">*</span>
                 </Label>
                 <Input
                   id="email"
@@ -107,13 +107,13 @@ export const RegisterPage: React.FC = () => {
                   {...register('email')}
                 />
                 {errors.email && (
-                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
+                  <p className="text-[11px] text-[#F1654C] font-semibold">{errors.email.message}</p>
                 )}
               </div>
 
               <div className="space-y-1.5">
                 <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                  Mobile Number <span className="text-[#E94B35]">*</span>
+                  Mobile Number <span className="text-[#F1654C]">*</span>
                 </Label>
                 <Input
                   id="phone"
@@ -123,13 +123,13 @@ export const RegisterPage: React.FC = () => {
                   {...register('phone')}
                 />
                 {errors.phone && (
-                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.phone.message}</p>
+                  <p className="text-[11px] text-[#F1654C] font-semibold">{errors.phone.message}</p>
                 )}
               </div>
 
               <div className="space-y-1.5">
                 <Label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                  Create Password <span className="text-[#E94B35]">*</span>
+                  Create Password <span className="text-[#F1654C]">*</span>
                 </Label>
                 <Input
                   id="password"
@@ -139,13 +139,13 @@ export const RegisterPage: React.FC = () => {
                   {...register('password')}
                 />
                 {errors.password && (
-                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.password.message}</p>
+                  <p className="text-[11px] text-[#F1654C] font-semibold">{errors.password.message}</p>
                 )}
               </div>
 
               <div className="space-y-1.5">
                 <Label htmlFor="confirm_password" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                  Confirm Password <span className="text-[#E94B35]">*</span>
+                  Confirm Password <span className="text-[#F1654C]">*</span>
                 </Label>
                 <Input
                   id="confirm_password"
@@ -155,14 +155,14 @@ export const RegisterPage: React.FC = () => {
                   {...register('confirm_password')}
                 />
                 {errors.confirm_password && (
-                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.confirm_password.message}</p>
+                  <p className="text-[11px] text-[#F1654C] font-semibold">{errors.confirm_password.message}</p>
                 )}
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717] mt-2"
+                className="w-full bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717] mt-2"
               >
                 <UserPlus className="w-4 h-4 mr-2" />
                 {isLoading ? 'Creating Account...' : 'Complete Patient Registration'}

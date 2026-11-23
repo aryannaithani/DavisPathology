@@ -55,11 +55,18 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* ===== ROW 1: Top Notice/Alert Strip (like AIIMS yellow strip) ===== */}
-      <div className="bg-[#F5C542] text-[#171717] text-[11px] py-1.5 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 font-bold">
-          <span className="text-[#E94B35]">📢</span>
-          <span className="font-black uppercase tracking-wider">Important:</span>
-          <span>All prices and data shown are for demonstration purposes only. Contact laboratory for verified information.</span>
+      <div className="bg-[#F5C542] text-[#171717] text-[11px] py-1.5 px-4 border-b border-[#171717]/10">
+        <div className="max-w-7xl mx-auto flex items-center justify-between font-bold">
+          <div className="flex items-center gap-2">
+            <span className="text-[#F1654C]">🔔</span>
+            <span className="font-black uppercase tracking-wider">Laboratory Notice:</span>
+            <span>Home Sample Collection Available Across Agra • Same-Day Digital Reports</span>
+          </div>
+          <div className="hidden sm:flex items-center gap-3 text-[11px]">
+            <a href="tel:+919876543210" className="hover:underline flex items-center gap-1">
+              <span>Helpline:</span> <span className="font-black text-[#171717]">+91 98765 43210</span>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -83,14 +90,15 @@ export const Header: React.FC = () => {
               </div>
             </Link>
 
-            {/* Right: Action Buttons (like AIIMS About/Tr/Accessibility buttons) */}
+            {/* Right: Action Buttons */}
             <div className="hidden sm:flex items-center gap-2">
-              <Link to="/about">
+              <Link to="/book-appointment">
                 <Button
                   size="sm"
-                  className="h-9 bg-[#171717] hover:bg-neutral-800 text-white font-bold text-xs uppercase tracking-wider rounded-none px-4"
+                  className="h-9 bg-[#F1654C] hover:bg-[#DF472B] text-white font-black text-xs uppercase tracking-wider rounded-none px-4 border border-[#171717] shadow-[2px_2px_0px_0px_#171717]"
                 >
-                  About
+                  <CalendarCheck className="w-3.5 h-3.5 mr-1.5" />
+                  Book a Test
                 </Button>
               </Link>
               <Link to="/reports">
@@ -105,7 +113,7 @@ export const Header: React.FC = () => {
               {user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button size="sm" className="h-9 bg-[#E94B35] hover:bg-[#D63520] text-white font-bold text-xs uppercase tracking-wider rounded-none px-4">
+                    <Button size="sm" className="h-9 bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold text-xs uppercase tracking-wider rounded-none px-4">
                       <UserIcon className="w-3.5 h-3.5 mr-1.5" />
                       {profile?.full_name?.split(' ')[0] || 'Account'}
                     </Button>
@@ -123,12 +131,12 @@ export const Header: React.FC = () => {
                     <DropdownMenuSeparator className="my-1" />
                     <DropdownMenuItem asChild className="rounded-none cursor-pointer">
                       <Link to="/patient/dashboard" className="flex items-center">
-                        <LayoutDashboard className="w-4 h-4 mr-2 text-[#E94B35]" />
+                        <LayoutDashboard className="w-4 h-4 mr-2 text-[#F1654C]" />
                         Patient Dashboard
                       </Link>
                     </DropdownMenuItem>
                     {isAdmin && (
-                      <DropdownMenuItem asChild className="rounded-none cursor-pointer bg-red-50 text-[#E94B35] font-bold">
+                      <DropdownMenuItem asChild className="rounded-none cursor-pointer bg-red-50 text-[#F1654C] font-bold">
                         <Link to="/admin" className="flex items-center">
                           <ShieldAlert className="w-4 h-4 mr-2" />
                           Admin Console
@@ -144,7 +152,7 @@ export const Header: React.FC = () => {
                 </DropdownMenu>
               ) : (
                 <Link to="/login">
-                  <Button size="sm" className="h-9 bg-[#E94B35] hover:bg-[#D63520] text-white font-bold text-xs uppercase tracking-wider rounded-none px-4">
+                  <Button size="sm" className="h-9 bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold text-xs uppercase tracking-wider rounded-none px-4">
                     <UserIcon className="w-3.5 h-3.5 mr-1.5" />
                     Sign In
                   </Button>
@@ -167,7 +175,7 @@ export const Header: React.FC = () => {
       </div>
 
       {/* ===== ROW 3: Navigation Bar (like AIIMS blue nav bar) ===== */}
-      <div className="hidden lg:block bg-[#171717] border-b-2 border-[#E94B35]">
+      <div className="hidden lg:block bg-[#171717] border-b-2 border-[#F1654C]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-0">
             {navLinks.map((link) => (
@@ -203,7 +211,7 @@ export const Header: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `flex items-center gap-2 px-3 py-2.5 text-sm font-bold uppercase tracking-wider ${
-                    isActive ? 'bg-[#E94B35] text-white' : 'text-[#171717] hover:bg-neutral-100'
+                    isActive ? 'bg-[#F1654C] text-white' : 'text-[#171717] hover:bg-neutral-100'
                   }`
                 }
               >
@@ -215,14 +223,14 @@ export const Header: React.FC = () => {
 
           <div className="p-3 bg-neutral-50 flex flex-col gap-2">
             <Link to="/book-appointment" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="w-full h-10 bg-[#E94B35] text-white text-xs font-bold uppercase rounded-none">
+              <Button className="w-full h-10 bg-[#F1654C] text-white text-xs font-bold uppercase rounded-none">
                 <CalendarCheck className="w-4 h-4 mr-2" />
                 Book a Test
               </Button>
             </Link>
             <Link to="/reports" onClick={() => setMobileMenuOpen(false)}>
               <Button variant="outline" className="w-full h-10 border-2 border-[#171717] font-bold text-xs uppercase rounded-none gap-2">
-                <FileDown className="w-4 h-4 text-[#E94B35]" />
+                <FileDown className="w-4 h-4 text-[#F1654C]" />
                 Download Reports
               </Button>
             </Link>

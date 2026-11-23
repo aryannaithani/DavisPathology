@@ -52,7 +52,7 @@ export const ReportsPage: React.FC = () => {
             <Lock className="w-5 h-5" />
           </div>
           <div>
-            <div className="inline-block bg-[#E94B35] text-white text-[9px] font-black uppercase tracking-widest px-2 py-0.5 mb-1">
+            <div className="inline-block bg-[#F1654C] text-white text-[9px] font-black uppercase tracking-widest px-2 py-0.5 mb-1">
               PATIENT CONFIDENTIALITY
             </div>
             <h4 className="font-heading font-black text-base text-white">Private & Encrypted Health Records</h4>
@@ -64,14 +64,14 @@ export const ReportsPage: React.FC = () => {
 
         {user ? (
           <Link to="/patient/reports">
-            <Button className="bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold text-xs uppercase tracking-wider rounded-none h-11 px-5 border-2 border-[#E94B35] whitespace-nowrap">
+            <Button className="bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold text-xs uppercase tracking-wider rounded-none h-11 px-5 border-2 border-[#F1654C] whitespace-nowrap shadow-[3px_3px_0px_0px_#F5C542]">
               Open My Patient Reports <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
           </Link>
         ) : (
           <div className="flex items-center gap-2">
             <Link to="/login">
-              <Button className="bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold text-xs uppercase tracking-wider rounded-none h-11 px-5 border-2 border-[#E94B35]">
+              <Button className="bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold text-xs uppercase tracking-wider rounded-none h-11 px-5 border-2 border-[#F1654C] shadow-[3px_3px_0px_0px_#F5C542]">
                 Log In to Download
               </Button>
             </Link>
@@ -89,7 +89,7 @@ export const ReportsPage: React.FC = () => {
         <div className="lg:col-span-7 space-y-6">
           <div className="border-2 border-[#171717] bg-white">
             <div className="p-4 bg-neutral-100 border-b-2 border-[#171717]">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#E94B35]">Quick Verification</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#F1654C]">Quick Verification</span>
               <h3 className="font-heading font-black text-base uppercase tracking-wider text-[#171717]">
                 Check Sample & Booking Status
               </h3>
@@ -104,7 +104,7 @@ export const ReportsPage: React.FC = () => {
                 <Input
                   value={searchRef}
                   onChange={(e) => setSearchRef(e.target.value)}
-                  placeholder="Enter Booking Reference (e.g. DPL-DEMO001)..."
+                  placeholder="Enter Booking Reference (e.g. DPL-804912)..."
                   className="h-12 text-xs font-bold uppercase rounded-none border-2 border-neutral-300 focus:border-[#171717]"
                 />
                 <Button type="submit" className="bg-[#171717] hover:bg-neutral-800 text-white font-bold h-12 px-6 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717]">
@@ -135,10 +135,10 @@ export const ReportsPage: React.FC = () => {
                         <div>Date: <strong className="text-[#171717]">{bookingResult.appointment_date}</strong></div>
                       </div>
                       <div className="pt-2 border-t border-neutral-200 flex items-center justify-between text-xs">
-                        <span>Total: <strong className="text-[#E94B35] font-bold">{formatPrice(bookingResult.total_amount)}</strong></span>
+                        <span>Total: <strong className="text-[#F1654C] font-bold">{formatPrice(bookingResult.total_amount)}</strong></span>
                         {bookingResult.status === 'COMPLETED' ? (
                           <Link to="/login">
-                            <span className="text-[#E94B35] font-bold underline uppercase text-[11px]">
+                            <span className="text-[#F1654C] font-bold underline uppercase text-[11px]">
                               Report Ready - Log in to download
                             </span>
                           </Link>
@@ -150,7 +150,7 @@ export const ReportsPage: React.FC = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="p-3 bg-red-50 text-[#E94B35] text-xs border border-red-300 font-semibold">
+                    <div className="p-3 bg-red-50 text-[#F1654C] text-xs border border-red-300 font-semibold">
                       No booking found matching reference "{queriedRef}". Please verify the code printed on your receipt slip.
                     </div>
                   )}
@@ -164,7 +164,7 @@ export const ReportsPage: React.FC = () => {
         <div className="lg:col-span-5 space-y-6">
           <div className="border-2 border-[#171717] bg-white">
             <div className="p-4 bg-neutral-100 border-b-2 border-[#171717]">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#E94B35]">Protocol Workflow</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#F1654C]">Protocol Workflow</span>
               <h3 className="font-heading font-black text-base uppercase tracking-wider text-[#171717]">
                 How Online Reports Work
               </h3>
@@ -197,7 +197,7 @@ export const ReportsPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 bg-[#E94B35] text-white font-black flex items-center justify-center shrink-0 text-xs">
+                  <div className="w-7 h-7 bg-[#F1654C] text-white font-black flex items-center justify-center shrink-0 text-xs">
                     3
                   </div>
                   <div>

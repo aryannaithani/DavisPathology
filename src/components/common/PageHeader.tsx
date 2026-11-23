@@ -24,7 +24,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   className,
 }) => {
   return (
-    <div className={cn('mb-8 bg-white border-2 border-[#171717] p-5 sm:p-6 shadow-[3px_3px_0px_0px_#171717]', className)}>
+    <div className={cn('mb-8 bg-white border-2 border-[#171717] border-t-4 border-t-[#F1654C] p-5 sm:p-6 shadow-[3px_3px_0px_0px_#171717]', className)}>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <nav className="flex items-center space-x-1.5 text-xs uppercase font-bold tracking-wider text-neutral-500 mb-2.5">
           {breadcrumbs.map((item, index) => {
@@ -32,7 +32,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
             return (
               <React.Fragment key={index}>
                 {item.href && !isLast ? (
-                  <Link to={item.href} className="text-primary hover:underline">
+                  <Link to={item.href} className="text-[#F1654C] hover:underline font-black">
                     {item.label}
                   </Link>
                 ) : (

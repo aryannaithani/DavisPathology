@@ -66,7 +66,7 @@ export const LoginPage: React.FC = () => {
               <Activity className="w-7 h-7 stroke-[2.5]" />
             </div>
           </Link>
-          <div className="text-[11px] font-black uppercase tracking-widest text-[#E94B35]">
+          <div className="text-[11px] font-black uppercase tracking-widest text-[#F1654C]">
             Davis Pathology Lab | Agra
           </div>
           <h1 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] tracking-tight">
@@ -77,14 +77,14 @@ export const LoginPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Demo Mode Helper Credentials Box */}
+        {/* Quick Access Helper Credentials Box */}
         <div className="p-4 bg-[#171717] text-white text-xs space-y-2 border-2 border-[#171717]">
           <div className="flex items-center gap-1.5 text-[#F5C542] font-black text-xs uppercase tracking-wider">
             <ShieldCheck className="w-4 h-4" />
-            <span>Demonstration Quick Access</span>
+            <span>Quick Access Selection</span>
           </div>
           <p className="text-neutral-400 text-[11px]">
-            In demonstration mode, fill pre-configured demo credentials with one click:
+            Select role to pre-fill credentials for immediate review:
           </p>
           <div className="grid grid-cols-2 gap-2 pt-1">
             <Button
@@ -97,7 +97,7 @@ export const LoginPage: React.FC = () => {
               }}
               className="text-[10px] h-8 bg-neutral-900 border border-neutral-700 text-white hover:bg-neutral-800 rounded-none uppercase font-bold"
             >
-              Fill Admin Demo
+              Admin Account
             </Button>
             <Button
               type="button"
@@ -109,7 +109,7 @@ export const LoginPage: React.FC = () => {
               }}
               className="text-[10px] h-8 bg-neutral-900 border border-neutral-700 text-white hover:bg-neutral-800 rounded-none uppercase font-bold"
             >
-              Fill Patient Demo
+              Patient Account
             </Button>
           </div>
         </div>
@@ -118,14 +118,14 @@ export const LoginPage: React.FC = () => {
         <div className="border-2 border-[#171717] bg-white">
           <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center justify-between">
             <span className="text-xs font-black uppercase tracking-wider text-[#171717]">Authentication Credentials</span>
-            <Lock className="w-3.5 h-3.5 text-[#E94B35]" />
+            <Lock className="w-3.5 h-3.5 text-[#F1654C]" />
           </div>
 
           <div className="p-6 sm:p-8 space-y-4">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-1.5">
                 <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                  Email Address <span className="text-[#E94B35]">*</span>
+                  Email Address <span className="text-[#F1654C]">*</span>
                 </Label>
                 <div className="relative">
                   <Input
@@ -138,18 +138,18 @@ export const LoginPage: React.FC = () => {
                   <Mail className="absolute right-3 top-3.5 w-4 h-4 text-neutral-400" />
                 </div>
                 {errors.email && (
-                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
+                  <p className="text-[11px] text-[#F1654C] font-semibold">{errors.email.message}</p>
                 )}
               </div>
 
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                    Password <span className="text-[#E94B35]">*</span>
+                    Password <span className="text-[#F1654C]">*</span>
                   </Label>
                   <Link
                     to="/forgot-password"
-                    className="text-[11px] font-bold text-[#E94B35] hover:underline"
+                    className="text-[11px] font-bold text-[#F1654C] hover:underline"
                   >
                     Forgot password?
                   </Link>
@@ -165,14 +165,14 @@ export const LoginPage: React.FC = () => {
                   <Lock className="absolute right-3 top-3.5 w-4 h-4 text-neutral-400" />
                 </div>
                 {errors.password && (
-                  <p className="text-[11px] text-[#E94B35] font-semibold">{errors.password.message}</p>
+                  <p className="text-[11px] text-[#F1654C] font-semibold">{errors.password.message}</p>
                 )}
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717] mt-2"
+                className="w-full bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717] mt-2"
               >
                 <LogIn className="w-4 h-4 mr-2" />
                 {isLoading ? 'Signing In...' : 'Sign In to Portal'}

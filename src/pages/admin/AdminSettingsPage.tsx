@@ -17,7 +17,7 @@ export const AdminSettingsPage: React.FC = () => {
   const [address, setAddress] = useState('Shop No. 4, Millenium Complex, Bhagwan Talkies, Agra, Uttar Pradesh');
   const [phone, setPhone] = useState('+91 98765 43210');
   const [email, setEmail] = useState('info@davispathology.com');
-  const [whatsapp, setWhatsapp] = useState('919999999999');
+  const [whatsapp, setWhatsapp] = useState('919876543210');
   const [weekdayHours, setWeekdayHours] = useState('7:00 AM – 8:00 PM');
   const [sundayHours, setSundayHours] = useState('8:00 AM – 2:00 PM');
   const [tagline, setTagline] = useState('Accurate Diagnostics. Affordable Healthcare. Quick Results.');

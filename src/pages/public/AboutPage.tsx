@@ -24,11 +24,11 @@ export const AboutPage: React.FC = () => {
         ]}
       />
 
-      {/* Demonstration Alert Strip (Yellow Accent) */}
-      <div className="mb-10 p-4 border-2 border-secondary bg-secondary/15 flex items-start gap-3 text-xs text-[#171717]">
+      {/* Patient Quality Commitment Banner (Yellow Accent) */}
+      <div className="mb-10 p-4 border-2 border-[#F5C542] bg-[#F5C542]/20 flex items-start gap-3 text-xs text-[#171717]">
         <AlertTriangle className="w-5 h-5 text-[#171717] shrink-0 mt-0.5" />
         <div>
-          <strong className="font-extrabold uppercase">Demonstration Project Notice:</strong> Davis Pathology Lab is an interactive diagnostic laboratory web application and management system. All business information, diagnostic pricing, test procedures, staff profiles, and turnaround times are realistic demonstration records.
+          <strong className="font-extrabold uppercase">Quality & Patient Care Commitment:</strong> Davis Pathology Lab operates with certified diagnostic equipment, internal quality controls, and qualified phlebotomy personnel to ensure dependable report accuracy for Agra residents.
         </div>
       </div>
 
@@ -57,7 +57,7 @@ export const AboutPage: React.FC = () => {
 
           <div className="pt-4 border-t border-neutral-200">
             <Link to="/book-appointment">
-              <Button className="bg-primary hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs h-11 px-6 border border-[#171717]">
+              <Button className="bg-[#F1654C] hover:bg-[#DF472B] text-white font-extrabold uppercase tracking-wider text-xs h-11 px-6 border border-[#171717]">
                 <CalendarCheck className="w-4 h-4 mr-2" />
                 Book a Diagnostic Test
               </Button>
@@ -138,7 +138,7 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-primary text-white p-6 border-2 border-black flex flex-col justify-between">
+          <div className="bg-[#F1654C] text-white p-6 border-2 border-black flex flex-col justify-between">
             <div>
               <div className="w-9 h-9 bg-[#171717] text-white flex items-center justify-center font-black mb-4">
                 <IndianRupee className="w-5 h-5" />

@@ -38,7 +38,7 @@ export const HomePage: React.FC = () => {
           1. HERO SECTION — Left text fading into right lab photograph
           Inspired by the AIIMS reference: clean text on left, building photo on right
           ======================================================================== */}
-      <section className="relative w-full overflow-hidden bg-white border-b-4 border-[#E94B35]">
+      <section className="relative w-full overflow-hidden bg-white border-b-4 border-[#F1654C]">
         <div className="relative min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] flex items-stretch">
 
           {/* Left Content Area (transparent on mobile so the low-opacity lab image shows through, gradient on desktop) */}
@@ -56,7 +56,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Lab Name — Large, bold, like AIIMS blue name */}
-            <h1 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-[#E94B35] tracking-tight leading-tight uppercase">
+            <h1 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-[#F1654C] tracking-tight leading-tight uppercase">
               Davis Pathology Lab,<br />
               <span className="text-[#171717]">Agra</span>
             </h1>
@@ -71,13 +71,13 @@ export const HomePage: React.FC = () => {
 
             {/* Value Badges */}
             <div className="mt-5 flex flex-wrap items-center gap-2">
-              <span className="bg-[#171717] text-[#F5C542] text-[10px] font-black uppercase tracking-widest px-3 py-1.5">
+              <span className="bg-[#171717] text-[#F5C542] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 border border-[#171717]">
                 ✓ Accurate
               </span>
-              <span className="bg-[#E94B35] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5">
+              <span className="bg-[#F1654C] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 border border-[#F1654C]">
                 ✓ Affordable
               </span>
-              <span className="bg-[#F5C542] text-[#171717] text-[10px] font-black uppercase tracking-widest px-3 py-1.5">
+              <span className="bg-[#F5C542] text-[#171717] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 border border-[#F5C542]">
                 ✓ Quick
               </span>
             </div>
@@ -87,7 +87,7 @@ export const HomePage: React.FC = () => {
               <Link to="/book-appointment">
                 <Button 
                   size="lg" 
-                  className="bg-[#E94B35] hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs h-11 px-6 border-2 border-[#171717] rounded-none"
+                  className="bg-[#F1654C] hover:bg-[#DF472B] text-white font-extrabold uppercase tracking-wider text-xs h-11 px-6 border-2 border-[#171717] rounded-none shadow-[3px_3px_0px_0px_#171717]"
                 >
                   <CalendarCheck className="w-4 h-4 mr-2" />
                   Book a Test
@@ -97,7 +97,7 @@ export const HomePage: React.FC = () => {
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="text-[#171717] font-extrabold uppercase tracking-wider text-xs h-11 px-6 border-2 border-[#171717] hover:bg-[#171717] hover:text-white rounded-none"
+                  className="text-[#171717] font-extrabold uppercase tracking-wider text-xs h-11 px-6 border-2 border-[#171717] hover:bg-[#171717] hover:text-[#F5C542] rounded-none shadow-[3px_3px_0px_0px_#F5C542]"
                 >
                   <Search className="w-4 h-4 mr-2" />
                   Explore Services
@@ -106,8 +106,8 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Address line */}
-            <div className="mt-5 flex items-center gap-2 text-xs text-neutral-500">
-              <MapPin className="w-3.5 h-3.5 text-[#E94B35] shrink-0" />
+            <div className="mt-5 flex items-center gap-2 text-xs text-neutral-600 font-medium">
+              <MapPin className="w-3.5 h-3.5 text-[#F1654C] shrink-0" />
               <span>Shop No. 4, Millenium Complex, Bhagwan Talkies, Agra, Uttar Pradesh</span>
             </div>
           </div>
@@ -136,14 +136,14 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================================
-          2. TRUST HIGHLIGHTS (Clean Horizontal Bar with Thin Borders)
+          2. TRUST HIGHLIGHTS (Clean Horizontal Bar with Brand Color Tops)
           ======================================================================== */}
       <section className="bg-white border-b-2 border-[#171717]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-neutral-300">
             
-            <div className="p-6 flex items-start gap-4">
-              <div className="w-10 h-10 bg-[#171717] text-secondary flex items-center justify-center shrink-0 border border-black font-bold">
+            <div className="p-6 flex items-start gap-4 border-t-4 border-[#F1654C] bg-white">
+              <div className="w-10 h-10 bg-[#F1654C] text-white flex items-center justify-center shrink-0 border border-black font-bold">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
@@ -156,8 +156,8 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 flex items-start gap-4">
-              <div className="w-10 h-10 bg-[#171717] text-secondary flex items-center justify-center shrink-0 border border-black font-bold">
+            <div className="p-6 flex items-start gap-4 border-t-4 border-[#F5C542] bg-white">
+              <div className="w-10 h-10 bg-[#F5C542] text-[#171717] flex items-center justify-center shrink-0 border border-black font-bold">
                 <IndianRupee className="w-5 h-5" />
               </div>
               <div>
@@ -170,8 +170,8 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 flex items-start gap-4">
-              <div className="w-10 h-10 bg-[#171717] text-secondary flex items-center justify-center shrink-0 border border-black font-bold">
+            <div className="p-6 flex items-start gap-4 border-t-4 border-[#171717] bg-white">
+              <div className="w-10 h-10 bg-[#171717] text-[#F5C542] flex items-center justify-center shrink-0 border border-black font-bold">
                 <Clock className="w-5 h-5" />
               </div>
               <div>
@@ -184,8 +184,8 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 flex items-start gap-4">
-              <div className="w-10 h-10 bg-[#171717] text-secondary flex items-center justify-center shrink-0 border border-black font-bold">
+            <div className="p-6 flex items-start gap-4 border-t-4 border-[#F1654C] bg-white">
+              <div className="w-10 h-10 bg-[#F1654C] text-white flex items-center justify-center shrink-0 border border-black font-bold">
                 <Heart className="w-5 h-5" />
               </div>
               <div>
@@ -203,7 +203,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* ========================================================================
-          3. DIAGNOSTIC SERVICES (Rectangular Grid with Thin Borders)
+          3. DIAGNOSTIC SERVICES (Rectangular Grid with Brand Color Tops)
           ======================================================================== */}
       <section className="py-14 sm:py-16 bg-[#F8F8F6] border-b-2 border-[#171717]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -211,10 +211,10 @@ export const HomePage: React.FC = () => {
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b-2 border-neutral-300 gap-4">
             <div>
-              <span className="text-xs font-black uppercase tracking-wider text-primary">
+              <span className="text-xs font-black uppercase tracking-wider text-[#F1654C] bg-[#F1654C]/10 px-2 py-0.5 border border-[#F1654C]/30 inline-block">
                 LABORATORY DEPARTMENTS
               </span>
-              <h2 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] uppercase tracking-tight mt-1">
+              <h2 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] uppercase tracking-tight mt-1.5">
                 Diagnostic Services
               </h2>
             </div>
@@ -222,7 +222,7 @@ export const HomePage: React.FC = () => {
               <Button 
                 variant="outline" 
                 size="sm"
-                className="h-9 border-2 border-[#171717] font-bold text-xs uppercase tracking-wider text-[#171717] hover:bg-[#171717] hover:text-white rounded-none"
+                className="h-9 border-2 border-[#171717] font-bold text-xs uppercase tracking-wider text-[#171717] hover:bg-[#171717] hover:text-[#F5C542] rounded-none shadow-[2px_2px_0px_0px_#171717]"
               >
                 <span>View Full Test Catalogue</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -232,34 +232,43 @@ export const HomePage: React.FC = () => {
 
           {/* 6 Rectangular Service Containers */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {demoCategories.map((category) => (
-              <div
-                key={category.id}
-                className="bg-white border-2 border-[#171717] p-6 flex flex-col justify-between hover:border-primary transition-colors"
-              >
-                <div>
-                  <div className="w-10 h-10 bg-neutral-100 border border-neutral-300 flex items-center justify-center mb-4">
-                    {categoryIconMap[category.slug] || <FlaskConical className="w-5 h-5 text-primary" />}
+            {demoCategories.map((category, idx) => {
+              const borderColors = ['border-t-4 border-t-[#F1654C]', 'border-t-4 border-t-[#F5C542]', 'border-t-4 border-t-[#171717]'];
+              const iconBg = [
+                'bg-[#F1654C]/10 text-[#F1654C] border border-[#F1654C]/40',
+                'bg-[#F5C542]/20 text-[#171717] border border-[#F5C542]',
+                'bg-[#171717] text-[#F5C542] border border-[#171717]'
+              ];
+              const styleIdx = idx % 3;
+              return (
+                <div
+                  key={category.id}
+                  className={`bg-white border-2 border-[#171717] p-6 flex flex-col justify-between hover:shadow-[4px_4px_0px_0px_#171717] transition-all ${borderColors[styleIdx]}`}
+                >
+                  <div>
+                    <div className={`w-11 h-11 flex items-center justify-center mb-4 ${iconBg[styleIdx]}`}>
+                      {categoryIconMap[category.slug] || <FlaskConical className="w-5 h-5 text-primary" />}
+                    </div>
+                    <h3 className="font-heading font-black text-base text-[#171717] uppercase tracking-tight">
+                      {category.name}
+                    </h3>
+                    <p className="text-xs text-neutral-600 mt-2 leading-relaxed">
+                      {category.description}
+                    </p>
                   </div>
-                  <h3 className="font-heading font-black text-base text-[#171717] uppercase tracking-tight">
-                    {category.name}
-                  </h3>
-                  <p className="text-xs text-neutral-600 mt-2 leading-relaxed">
-                    {category.description}
-                  </p>
-                </div>
 
-                <div className="pt-4 mt-5 border-t border-neutral-200">
-                  <Link
-                    to={`/tests?category=${category.slug}`}
-                    className="inline-flex items-center text-xs font-black uppercase tracking-wider text-primary hover:text-[#D63520] transition-colors"
-                  >
-                    <span>View Tests</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                  </Link>
+                  <div className="pt-4 mt-5 border-t border-neutral-200">
+                    <Link
+                      to={`/tests?category=${category.slug}`}
+                      className="inline-flex items-center text-xs font-black uppercase tracking-wider text-[#F1654C] hover:text-[#DF472B] transition-colors"
+                    >
+                      <span>View Tests</span>
+                      <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
@@ -314,10 +323,10 @@ export const HomePage: React.FC = () => {
                         Package Fee
                       </div>
                       <div className="flex items-baseline gap-2 mt-0.5">
-                        <span className="font-heading font-black text-3xl text-primary">
+                        <span className="font-heading font-black text-3xl text-[#F1654C]">
                           {formatPrice(pkg.price)}
                         </span>
-                        <span className="text-[11px] text-neutral-500 italic">*Demo Rate</span>
+                        <span className="text-[11px] text-neutral-500 font-bold">*All-Inclusive</span>
                       </div>
                     </div>
 
@@ -328,7 +337,7 @@ export const HomePage: React.FC = () => {
                       <ul className="space-y-1.5 text-xs text-neutral-700">
                         {pkg.tests?.map((t) => (
                           <li key={t.id} className="flex items-start gap-2">
-                            <span className="text-primary font-bold">✓</span>
+                            <span className="text-[#F1654C] font-bold">✓</span>
                             <span>{t.name}</span>
                           </li>
                         ))}
@@ -342,7 +351,7 @@ export const HomePage: React.FC = () => {
                         className={`w-full font-extrabold uppercase tracking-wider text-xs h-11 border border-[#171717] rounded-none ${
                           isPopular
                             ? 'bg-secondary hover:bg-[#E6AD1E] text-[#171717]'
-                            : 'bg-primary hover:bg-[#D63520] text-white'
+                            : 'bg-[#F1654C] hover:bg-[#DF472B] text-white'
                         }`}
                       >
                         BOOK THIS PACKAGE
@@ -353,15 +362,11 @@ export const HomePage: React.FC = () => {
               );
             })}
           </div>
-
-          <div className="mt-8 p-3 bg-neutral-100 border border-neutral-300 text-[11px] text-neutral-600">
-            <strong>Demonstration Pricing Notice:</strong> All package rates and test parameters shown are demonstration data and require validation by Davis Pathology Lab staff before booking.
-          </div>
         </div>
       </section>
 
       {/* ========================================================================
-          5. WHY CHOOSE US (Bold 3-Column Layout: Black, Orange-Red, Yellow)
+          5. WHY CHOOSE US (Bold 3-Column Layout: Black, Orange, Yellow)
           ======================================================================== */}
       <section className="border-b-2 border-[#171717]">
         <div className="grid grid-cols-1 md:grid-cols-3">
@@ -386,7 +391,7 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-primary text-white p-8 sm:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col justify-between">
+          <div className="bg-[#F1654C] text-white p-8 sm:p-10 border-b-2 md:border-b-0 md:border-r-2 border-black flex flex-col justify-between">
             <div>
               <div className="w-10 h-10 bg-[#171717] text-white font-black flex items-center justify-center mb-6 border border-white">
                 <IndianRupee className="w-6 h-6" />
@@ -448,7 +453,7 @@ export const HomePage: React.FC = () => {
               <Link to="/book-appointment">
                 <Button 
                   size="lg" 
-                  className="bg-primary hover:bg-[#D63520] text-white font-extrabold uppercase tracking-wider text-xs sm:text-sm h-12 px-8 border-2 border-white rounded-none"
+                  className="bg-[#F1654C] hover:bg-[#DF472B] text-white font-extrabold uppercase tracking-wider text-xs sm:text-sm h-12 px-8 border-2 border-white rounded-none shadow-[4px_4px_0px_0px_#F5C542]"
                 >
                   BOOK YOUR APPOINTMENT
                 </Button>

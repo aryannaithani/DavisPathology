@@ -2,7 +2,7 @@ import React from 'react';
 import { MessageCircle } from 'lucide-react';
 
 export const WhatsAppButton: React.FC = () => {
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '919999999999';
+  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '919876543210';
   const defaultMessage = encodeURIComponent(
     'Hello Davis Pathology Lab, I would like to enquire about your diagnostic services.'
   );

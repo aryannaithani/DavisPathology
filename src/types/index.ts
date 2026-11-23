@@ -144,7 +144,7 @@ export interface LaboratorySetting {
 export interface ContactEnquiry {
   id: string;
   name: string;
-  email: string;
+  email?: string;
   phone: string;
   subject: string;
   message: string;

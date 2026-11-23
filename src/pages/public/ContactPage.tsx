@@ -67,11 +67,11 @@ export const ContactPage: React.FC = () => {
         ]}
       />
 
-      {/* Demonstration Alert */}
-      <div className="mb-8 p-4 bg-[#F5C542]/15 border-2 border-[#F5C542] text-xs text-[#171717] flex items-start gap-3">
+      {/* Contact Assistance Alert */}
+      <div className="mb-8 p-4 bg-[#F5C542]/20 border-2 border-[#F5C542] text-xs text-[#171717] flex items-start gap-3">
         <Info className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
         <div className="leading-relaxed">
-          <strong className="font-bold uppercase tracking-wider">Demonstration Notice:</strong> The phone numbers, address and contact forms are active for demonstration. Reaching out through this form creates a demo enquiry record in our administration database.
+          <strong className="font-bold uppercase tracking-wider">Direct Assistance:</strong> Our Agra laboratory reception desk is open Monday to Saturday from 7:00 AM to 8:00 PM and Sunday from 8:00 AM to 2:00 PM. For emergency queries, call our helpline directly.
         </div>
       </div>
 
@@ -80,7 +80,7 @@ export const ContactPage: React.FC = () => {
         <div className="lg:col-span-7">
           <div className="border-2 border-[#171717] bg-white">
             <div className="p-4 bg-neutral-100 border-b-2 border-[#171717]">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#E94B35]">Direct Correspondence</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#F1654C]">Direct Correspondence</span>
               <h2 className="font-heading font-black text-base uppercase tracking-wider text-[#171717]">
                 Send Us an Enquiry
               </h2>
@@ -100,7 +100,7 @@ export const ContactPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                      Full Name <span className="text-[#E94B35]">*</span>
+                      Full Name <span className="text-[#F1654C]">*</span>
                     </Label>
                     <Input
                       id="name"
@@ -109,13 +109,13 @@ export const ContactPage: React.FC = () => {
                       {...register('name')}
                     />
                     {errors.name && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.name.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.name.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
                     <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                      Mobile Number <span className="text-[#E94B35]">*</span>
+                      Mobile Number <span className="text-[#F1654C]">*</span>
                     </Label>
                     <Input
                       id="phone"
@@ -125,14 +125,14 @@ export const ContactPage: React.FC = () => {
                       {...register('phone')}
                     />
                     {errors.phone && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.phone.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.phone.message}</p>
                     )}
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
                   <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                    Email Address <span className="text-[#E94B35]">*</span>
+                    Email Address <span className="text-neutral-500 font-normal lowercase">(optional)</span>
                   </Label>
                   <Input
                     id="email"
@@ -142,13 +142,13 @@ export const ContactPage: React.FC = () => {
                     {...register('email')}
                   />
                   {errors.email && (
-                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
+                    <p className="text-[11px] text-[#F1654C] font-semibold">{errors.email.message}</p>
                   )}
                 </div>
 
                 <div className="space-y-1.5">
                   <Label htmlFor="subject" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                    Subject <span className="text-[#E94B35]">*</span>
+                    Subject <span className="text-[#F1654C]">*</span>
                   </Label>
                   <Input
                     id="subject"
@@ -157,13 +157,13 @@ export const ContactPage: React.FC = () => {
                     {...register('subject')}
                   />
                   {errors.subject && (
-                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.subject.message}</p>
+                    <p className="text-[11px] text-[#F1654C] font-semibold">{errors.subject.message}</p>
                   )}
                 </div>
 
                 <div className="space-y-1.5">
                   <Label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                    Your Message <span className="text-[#E94B35]">*</span>
+                    Your Message <span className="text-[#F1654C]">*</span>
                   </Label>
                   <Textarea
                     id="message"
@@ -173,14 +173,14 @@ export const ContactPage: React.FC = () => {
                     {...register('message')}
                   />
                   {errors.message && (
-                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.message.message}</p>
+                    <p className="text-[11px] text-[#F1654C] font-semibold">{errors.message.message}</p>
                   )}
                 </div>
 
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717]"
+                  className="w-full bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717]"
                 >
                   <Send className="w-4 h-4 mr-2" />
                   {isSubmitting ? 'Sending Enquiry...' : 'Submit Enquiry'}
@@ -205,7 +205,7 @@ export const ContactPage: React.FC = () => {
             <div className="p-6 sm:p-8 space-y-6">
               <div className="space-y-4 text-xs">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-[#E94B35] shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-[#F1654C] shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-white font-bold uppercase text-[11px]">Physical Address</strong>
                     <span className="text-neutral-300 leading-relaxed block mt-0.5">
@@ -215,15 +215,15 @@ export const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-[#E94B35] shrink-0 mt-0.5" />
+                  <Phone className="w-5 h-5 text-[#F1654C] shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-white font-bold uppercase text-[11px]">Telephone Inquiries</strong>
-                    <span className="text-neutral-300 block mt-0.5">+91 98765 43210 (Demonstration)</span>
+                    <span className="text-neutral-300 block mt-0.5">+91 98765 43210</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-[#E94B35] shrink-0 mt-0.5" />
+                  <Mail className="w-5 h-5 text-[#F1654C] shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-white font-bold uppercase text-[11px]">Email Desk</strong>
                     <span className="text-neutral-300 block mt-0.5">info@davispathology.com</span>

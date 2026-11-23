@@ -49,7 +49,7 @@ export const AdminLayout: React.FC = () => {
             <Activity className="w-5 h-5" />
           </div>
           <span className="font-heading font-black text-lg tracking-tight">
-            <span className="text-[#E94B35]">DAVIS</span> ADMIN
+            <span className="text-[#F1654C]">DAVIS</span> ADMIN
           </span>
         </div>
         <button
@@ -74,7 +74,7 @@ export const AdminLayout: React.FC = () => {
             </div>
             <div>
               <div className="font-heading font-black text-base text-white tracking-tight">
-                <span className="text-[#E94B35]">DAVIS</span> LAB
+                <span className="text-[#F1654C]">DAVIS</span> LAB
               </div>
               <div className="text-[9px] text-[#F5C542] font-black uppercase tracking-widest">
                 Agra Admin Console
@@ -107,7 +107,7 @@ export const AdminLayout: React.FC = () => {
               className={({ isActive }) =>
                 `flex items-center justify-between px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${
                   isActive
-                    ? 'bg-[#E94B35] text-white font-black'
+                    ? 'bg-[#F1654C] text-white font-black'
                     : 'text-neutral-300 hover:bg-neutral-900 hover:text-white'
                 }`
               }
@@ -136,7 +136,7 @@ export const AdminLayout: React.FC = () => {
           </Link>
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-neutral-400 hover:text-[#E94B35] transition-colors"
+            className="w-full flex items-center gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-neutral-400 hover:text-[#F1654C] transition-colors"
           >
             <LogOut className="w-4 h-4" />
             Sign Out

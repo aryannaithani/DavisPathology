@@ -96,8 +96,13 @@ export async function getBookings(filters?: BookingFilters): Promise<Booking[]> 
 }
 
 export async function getBookingByReference(reference: string): Promise<Booking | null> {
+  const cleanRef = reference.trim().toUpperCase();
   if (!isSupabaseConfigured) {
-    const booking = demoBookings.find((b) => b.booking_reference === reference);
+    const booking = demoBookings.find(
+      (b) =>
+        b.booking_reference.toUpperCase() === cleanRef ||
+        (cleanRef === 'DPL-DEMO001' && b.booking_reference === 'DPL-804912')
+    );
     if (!booking) return null;
     return {
       ...booking,

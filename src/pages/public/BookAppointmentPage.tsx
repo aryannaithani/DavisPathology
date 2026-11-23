@@ -209,7 +209,7 @@ export const BookAppointmentPage: React.FC = () => {
                 <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">
                   Laboratory Reference Number
                 </span>
-                <div className="text-2xl font-black font-heading text-[#E94B35]">
+                <div className="text-2xl font-black font-heading text-[#F1654C]">
                   {confirmedBooking.booking_reference}
                 </div>
               </div>
@@ -258,7 +258,7 @@ export const BookAppointmentPage: React.FC = () => {
                 ))}
                 <div className="flex justify-between items-center text-sm pt-3 font-bold">
                   <span>Estimated Total Amount:</span>
-                  <span className="text-[#E94B35] text-lg font-black">{formatPrice(confirmedBooking.total_amount)}</span>
+                  <span className="text-[#F1654C] text-lg font-black">{formatPrice(confirmedBooking.total_amount)}</span>
                 </div>
               </div>
             </div>
@@ -313,7 +313,7 @@ export const BookAppointmentPage: React.FC = () => {
             {/* Section 1: Patient Information */}
             <div className="border-2 border-[#171717] bg-white">
               <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center gap-2">
-                <User className="w-4 h-4 text-[#E94B35]" />
+                <User className="w-4 h-4 text-[#F1654C]" />
                 <h2 className="font-heading font-black text-sm uppercase tracking-wider text-[#171717]">
                   1. Patient Information
                 </h2>
@@ -322,7 +322,7 @@ export const BookAppointmentPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label htmlFor="patient_name" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                      Patient Full Name <span className="text-[#E94B35]">*</span>
+                      Patient Full Name <span className="text-[#F1654C]">*</span>
                     </Label>
                     <Input
                       id="patient_name"
@@ -331,13 +331,13 @@ export const BookAppointmentPage: React.FC = () => {
                       {...register('patient_name')}
                     />
                     {errors.patient_name && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.patient_name.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.patient_name.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
                     <Label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                      Mobile Number <span className="text-[#E94B35]">*</span>
+                      Mobile Number <span className="text-[#F1654C]">*</span>
                     </Label>
                     <Input
                       id="phone"
@@ -347,7 +347,7 @@ export const BookAppointmentPage: React.FC = () => {
                       {...register('phone')}
                     />
                     {errors.phone && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.phone.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.phone.message}</p>
                     )}
                   </div>
                 </div>
@@ -365,13 +365,13 @@ export const BookAppointmentPage: React.FC = () => {
                       {...register('email')}
                     />
                     {errors.email && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.email.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
                     <Label htmlFor="age" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                      Age <span className="text-[#E94B35]">*</span>
+                      Age <span className="text-[#F1654C]">*</span>
                     </Label>
                     <Input
                       id="age"
@@ -381,14 +381,14 @@ export const BookAppointmentPage: React.FC = () => {
                       {...register('age', { valueAsNumber: true })}
                     />
                     {errors.age && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.age.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.age.message}</p>
                     )}
                   </div>
                 </div>
 
                 <div className="space-y-2 pt-2">
                   <Label className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                    Gender <span className="text-[#E94B35]">*</span>
+                    Gender <span className="text-[#F1654C]">*</span>
                   </Label>
                   <RadioGroup
                     defaultValue="male"
@@ -409,7 +409,7 @@ export const BookAppointmentPage: React.FC = () => {
                     </div>
                   </RadioGroup>
                   {errors.gender && (
-                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.gender.message}</p>
+                    <p className="text-[11px] text-[#F1654C] font-semibold">{errors.gender.message}</p>
                   )}
                 </div>
               </div>
@@ -419,16 +419,16 @@ export const BookAppointmentPage: React.FC = () => {
             <div className="border-2 border-[#171717] bg-white">
               <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <CalendarCheck className="w-4 h-4 text-[#E94B35]" />
+                  <CalendarCheck className="w-4 h-4 text-[#F1654C]" />
                   <h2 className="font-heading font-black text-sm uppercase tracking-wider text-[#171717]">
-                    2. Select Tests & Health Packages <span className="text-[#E94B35]">*</span>
+                    2. Select Tests & Health Packages <span className="text-[#F1654C]">*</span>
                   </h2>
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Multiple selection enabled</span>
               </div>
               <div className="p-6 space-y-5">
                 {errors.selected_tests && (
-                  <div className="p-3 bg-red-50 text-[#E94B35] text-xs border border-red-300 font-semibold">
+                  <div className="p-3 bg-red-50 text-[#F1654C] text-xs border border-red-300 font-semibold">
                     {errors.selected_tests.message}
                   </div>
                 )}
@@ -461,7 +461,7 @@ export const BookAppointmentPage: React.FC = () => {
                             <strong className="block text-sm">{pkg.name}</strong>
                             <span className="text-neutral-500 text-[11px] line-clamp-1">{pkg.description}</span>
                           </div>
-                          <span className="font-black text-[#E94B35] shrink-0 text-sm">{formatPrice(pkg.price)}</span>
+                          <span className="font-black text-[#F1654C] shrink-0 text-sm">{formatPrice(pkg.price)}</span>
                         </div>
                       );
                     })}
@@ -496,7 +496,7 @@ export const BookAppointmentPage: React.FC = () => {
                             <span className="truncate block font-semibold">{t.name}</span>
                             <span className={`text-[10px] ${isSelected ? 'text-[#F5C542]' : 'text-neutral-500'}`}>{t.sample_type}</span>
                           </div>
-                          <span className={`font-bold shrink-0 ${isSelected ? 'text-[#F5C542]' : 'text-[#E94B35]'}`}>
+                          <span className={`font-bold shrink-0 ${isSelected ? 'text-[#F5C542]' : 'text-[#F1654C]'}`}>
                             {formatPrice(t.price)}
                           </span>
                         </div>
@@ -510,7 +510,7 @@ export const BookAppointmentPage: React.FC = () => {
             {/* Section 3: Appointment Date, Time & Collection Preference */}
             <div className="border-2 border-[#171717] bg-white">
               <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#E94B35]" />
+                <Clock className="w-4 h-4 text-[#F1654C]" />
                 <h2 className="font-heading font-black text-sm uppercase tracking-wider text-[#171717]">
                   3. Appointment & Collection Details
                 </h2>
@@ -519,7 +519,7 @@ export const BookAppointmentPage: React.FC = () => {
                 {/* Collection Method Radio */}
                 <div className="space-y-2">
                   <Label className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                    Sample Collection Preference <span className="text-[#E94B35]">*</span>
+                    Sample Collection Preference <span className="text-[#F1654C]">*</span>
                   </Label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div
@@ -530,7 +530,7 @@ export const BookAppointmentPage: React.FC = () => {
                           : 'border-neutral-300 bg-white hover:border-neutral-400'
                       }`}
                     >
-                      <MapPin className={`w-5 h-5 shrink-0 mt-0.5 ${collectionMethod === 'visit_laboratory' ? 'text-[#F5C542]' : 'text-[#E94B35]'}`} />
+                      <MapPin className={`w-5 h-5 shrink-0 mt-0.5 ${collectionMethod === 'visit_laboratory' ? 'text-[#F5C542]' : 'text-[#F1654C]'}`} />
                       <div>
                         <strong className="block text-sm font-bold uppercase tracking-wider">Visit Laboratory</strong>
                         <p className={`text-xs mt-1 ${collectionMethod === 'visit_laboratory' ? 'text-neutral-300' : 'text-neutral-600'}`}>
@@ -562,7 +562,7 @@ export const BookAppointmentPage: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="space-y-1.5">
                     <Label htmlFor="appointment_date" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                      Preferred Date <span className="text-[#E94B35]">*</span>
+                      Preferred Date <span className="text-[#F1654C]">*</span>
                     </Label>
                     <Input
                       id="appointment_date"
@@ -572,13 +572,13 @@ export const BookAppointmentPage: React.FC = () => {
                       {...register('appointment_date')}
                     />
                     {errors.appointment_date && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.appointment_date.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.appointment_date.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-1.5">
                     <Label htmlFor="appointment_time" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                      Preferred Time Slot <span className="text-[#E94B35]">*</span>
+                      Preferred Time Slot <span className="text-[#F1654C]">*</span>
                     </Label>
                     <select
                       id="appointment_time"
@@ -592,7 +592,7 @@ export const BookAppointmentPage: React.FC = () => {
                       ))}
                     </select>
                     {errors.appointment_time && (
-                      <p className="text-[11px] text-[#E94B35] font-semibold">{errors.appointment_time.message}</p>
+                      <p className="text-[11px] text-[#F1654C] font-semibold">{errors.appointment_time.message}</p>
                     )}
                   </div>
                 </div>
@@ -610,7 +610,7 @@ export const BookAppointmentPage: React.FC = () => {
                     {...register('notes')}
                   />
                   {errors.notes && (
-                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.notes.message}</p>
+                    <p className="text-[11px] text-[#F1654C] font-semibold">{errors.notes.message}</p>
                   )}
                 </div>
               </div>
@@ -667,7 +667,7 @@ export const BookAppointmentPage: React.FC = () => {
                 <Button
                   type="submit"
                   disabled={createBookingMutation.isPending || selectedSummary.length === 0}
-                  className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 text-xs uppercase tracking-wider rounded-none border border-[#E94B35]"
+                  className="w-full bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold h-12 text-xs uppercase tracking-wider rounded-none border border-[#F1654C]"
                 >
                   <CalendarCheck className="w-4 h-4 mr-2" />
                   {createBookingMutation.isPending ? 'Submitting Booking...' : 'Confirm Booking Request'}

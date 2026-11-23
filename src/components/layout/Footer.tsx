@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-secondary shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-white">+91 98765 43210 (Demo)</a>
+                <a href="tel:+919876543210" className="hover:text-white font-bold">+91 98765 43210</a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
@@ -159,7 +159,7 @@ export const Footer: React.FC = () => {
         <div className="border-t border-neutral-800 pt-6 mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-neutral-400">
           <div>
             © {new Date().getFullYear()} Davis Pathology Lab, Agra. All rights reserved. 
-            <span className="ml-2 text-secondary font-semibold">Demonstration Web Application</span>
+            <span className="ml-2 text-secondary font-semibold">• Quality Healthcare & Diagnostics</span>
           </div>
           <div className="flex items-center gap-4 text-neutral-400">
             <span>Accuracy Standards</span>

@@ -90,7 +90,11 @@ export const contactSchema = z.object({
     .string()
     .min(2, 'Name must be at least 2 characters')
     .max(100, 'Name must be less than 100 characters'),
-  email: z.string().email('Enter a valid email address'),
+  email: z
+    .string()
+    .email('Enter a valid email address')
+    .optional()
+    .or(z.literal('')),
   phone: z
     .string()
     .regex(/^[6-9]\d{9}$/, 'Enter a valid 10-digit Indian mobile number'),
@@ -100,7 +104,7 @@ export const contactSchema = z.object({
     .max(200, 'Subject must be less than 200 characters'),
   message: z
     .string()
-    .min(10, 'Message must be at least 10 characters')
+    .min(5, 'Message must be at least 5 characters')
     .max(1000, 'Message must be less than 1000 characters'),
 });
 

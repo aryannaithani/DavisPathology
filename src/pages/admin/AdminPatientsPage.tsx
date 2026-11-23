@@ -26,40 +26,40 @@ import { useReports } from '@/hooks/useReports';
 import { formatDate } from '@/lib/utils';
 import type { Profile } from '@/types';
 
-// Demonstration patients
+// Registered laboratory patients
 const demoPatients: Profile[] = [
   {
     id: 'patient-demo-1',
-    full_name: 'Rajesh Kumar (Demo)',
+    full_name: 'Rajesh Kumar',
     phone: '9876500001',
-    email: 'demo.rajesh@example.com',
+    email: 'rajesh.kumar@example.com',
     role: 'patient',
     created_at: '2024-01-10T10:00:00Z',
     updated_at: '2024-01-10T10:00:00Z',
   },
   {
     id: 'patient-demo-2',
-    full_name: 'Sunita Sharma (Demo)',
+    full_name: 'Sunita Sharma',
     phone: '9876500002',
-    email: 'demo.sunita@example.com',
+    email: 'sunita.sharma@example.com',
     role: 'patient',
     created_at: '2024-01-15T12:00:00Z',
     updated_at: '2024-01-15T12:00:00Z',
   },
   {
     id: 'patient-demo-3',
-    full_name: 'Amit Verma (Demo)',
+    full_name: 'Amit Verma',
     phone: '9876500003',
-    email: 'demo.amit@example.com',
+    email: 'amit.verma@example.com',
     role: 'patient',
     created_at: '2024-02-01T08:30:00Z',
     updated_at: '2024-02-01T08:30:00Z',
   },
   {
     id: 'patient-demo-4',
-    full_name: 'Priya Gupta (Demo)',
+    full_name: 'Priya Gupta',
     phone: '9876500004',
-    email: 'demo.priya@example.com',
+    email: 'priya.gupta@example.com',
     role: 'patient',
     created_at: '2024-02-18T14:20:00Z',
     updated_at: '2024-02-18T14:20:00Z',

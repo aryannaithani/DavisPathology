@@ -71,10 +71,10 @@ export const TestsPage: React.FC = () => {
       />
 
       {/* Notice Banner */}
-      <div className="mb-8 p-3.5 border-2 border-secondary bg-secondary/15 text-xs text-[#171717] flex items-start gap-2.5">
+      <div className="mb-8 p-3.5 border-2 border-[#F5C542] bg-[#F5C542]/20 text-xs text-[#171717] flex items-start gap-2.5">
         <AlertTriangle className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
         <div>
-          <strong className="font-extrabold uppercase">Demonstration Catalogue:</strong> All test prices, sample requirements, and turnaround times are realistic demonstration parameters and must be validated with laboratory staff before clinical testing.
+          <strong className="font-extrabold uppercase">Patient Fasting Guidance:</strong> For investigations requiring fasting (such as Fasting Blood Sugar and Lipid Panels), please maintain 10–12 hours of overnight fasting prior to sample draw.
         </div>
       </div>
 
@@ -157,7 +157,7 @@ export const TestsPage: React.FC = () => {
             return (
               <div
                 key={test.id}
-                className="bg-white border-2 border-[#171717] p-5 flex flex-col justify-between hover:border-primary transition-colors shadow-[3px_3px_0px_0px_#171717]"
+                className="bg-white border-2 border-[#171717] border-t-4 border-t-[#F1654C] p-5 flex flex-col justify-between hover:border-primary transition-colors shadow-[3px_3px_0px_0px_#171717]"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2 mb-3">
@@ -165,15 +165,15 @@ export const TestsPage: React.FC = () => {
                       {category?.name || 'Diagnostic'}
                     </Badge>
                     <div className="text-right">
-                      <span className="font-heading font-black text-xl text-primary block leading-none">
+                      <span className="font-heading font-black text-xl text-[#F1654C] block leading-none">
                         {formatPrice(test.price)}
                       </span>
-                      <span className="text-[10px] text-neutral-500 font-bold uppercase">*Demo</span>
+                      <span className="text-[10px] text-neutral-500 font-bold uppercase">*All-Inclusive</span>
                     </div>
                   </div>
 
                   <Link to={`/tests/${test.slug}`}>
-                    <h3 className="font-heading font-black text-base text-[#171717] hover:text-primary transition-colors line-clamp-1 uppercase">
+                    <h3 className="font-heading font-black text-base text-[#171717] hover:text-[#F1654C] transition-colors line-clamp-1 uppercase">
                       {test.name}
                     </h3>
                   </Link>
@@ -201,7 +201,7 @@ export const TestsPage: React.FC = () => {
                     </Button>
                   </Link>
                   <Link to={`/book-appointment?test=${test.slug}`} className="flex-1">
-                    <Button size="sm" className="w-full bg-primary hover:bg-[#D63520] text-white text-xs font-bold uppercase tracking-wider h-9 border border-[#171717]">
+                    <Button size="sm" className="w-full bg-primary hover:bg-[#DF472B] text-white text-xs font-bold uppercase tracking-wider h-9 border border-[#171717]">
                       Book Test
                     </Button>
                   </Link>

@@ -61,7 +61,7 @@ export const ForgotPasswordPage: React.FC = () => {
               <Activity className="w-7 h-7 stroke-[2.5]" />
             </div>
           </Link>
-          <div className="text-[11px] font-black uppercase tracking-widest text-[#E94B35]">
+          <div className="text-[11px] font-black uppercase tracking-widest text-[#F1654C]">
             Davis Pathology Lab | Agra
           </div>
           <h1 className="font-heading font-black text-2xl sm:text-3xl text-[#171717] tracking-tight">
@@ -75,7 +75,7 @@ export const ForgotPasswordPage: React.FC = () => {
         <div className="border-2 border-[#171717] bg-white">
           <div className="p-4 bg-neutral-100 border-b-2 border-[#171717] flex items-center justify-between">
             <span className="text-xs font-black uppercase tracking-wider text-[#171717]">Password Recovery</span>
-            <Mail className="w-4 h-4 text-[#E94B35]" />
+            <Mail className="w-4 h-4 text-[#F1654C]" />
           </div>
 
           <div className="p-6 sm:p-8 space-y-4">
@@ -100,7 +100,7 @@ export const ForgotPasswordPage: React.FC = () => {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                    Registered Email Address <span className="text-[#E94B35]">*</span>
+                    Registered Email Address <span className="text-[#F1654C]">*</span>
                   </Label>
                   <Input
                     id="email"
@@ -110,14 +110,14 @@ export const ForgotPasswordPage: React.FC = () => {
                     {...register('email')}
                   />
                   {errors.email && (
-                    <p className="text-[11px] text-[#E94B35] font-semibold">{errors.email.message}</p>
+                    <p className="text-[11px] text-[#F1654C] font-semibold">{errors.email.message}</p>
                   )}
                 </div>
 
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-[#E94B35] hover:bg-[#d63f2a] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717]"
+                  className="w-full bg-[#F1654C] hover:bg-[#DF472B] text-white font-bold h-12 rounded-none uppercase text-xs tracking-wider border-2 border-[#171717]"
                 >
                   {isLoading ? 'Sending Link...' : 'Send Password Reset Link'}
                 </Button>

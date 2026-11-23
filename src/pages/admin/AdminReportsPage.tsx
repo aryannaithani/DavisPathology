@@ -160,7 +160,7 @@ export const AdminReportsPage: React.FC = () => {
       </div>
 
       {/* Security alert */}
-      <div className="p-3.5 rounded-xl bg-neutral-900 text-white text-xs border border-neutral-800 flex items-center gap-3">
+      <div className="p-3.5 bg-neutral-900 text-white text-xs border border-neutral-800 flex items-center gap-3">
         <ShieldCheck className="w-5 h-5 text-secondary shrink-0" />
         <span>All diagnostic uploads are validated for file structure and stored in a private Supabase Storage bucket.</span>
       </div>

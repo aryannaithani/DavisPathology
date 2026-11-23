@@ -42,7 +42,7 @@ export const PatientLayout: React.FC = () => {
                 <Activity className="w-5 h-5 stroke-[2.5]" />
               </div>
               <span className="font-heading font-black text-xl text-[#171717] tracking-tight">
-                <span className="text-[#E94B35]">DAVIS</span> LAB
+                <span className="text-[#F1654C]">DAVIS</span> LAB
               </span>
             </Link>
             <span className="hidden sm:inline text-[10px] font-black px-2 py-0.5 bg-[#F5C542] text-[#171717] uppercase tracking-wider border border-[#171717]">
@@ -52,7 +52,7 @@ export const PatientLayout: React.FC = () => {
 
           <div className="flex items-center gap-3">
             <Link to="/book-appointment">
-              <Button size="sm" className="bg-[#E94B35] hover:bg-[#d63f2a] text-white text-xs uppercase font-bold tracking-wider rounded-none border border-[#171717] h-9 gap-1.5 hidden sm:flex">
+              <Button size="sm" className="bg-[#F1654C] hover:bg-[#DF472B] text-white text-xs uppercase font-bold tracking-wider rounded-none border border-[#171717] h-9 gap-1.5 hidden sm:flex">
                 <PlusCircle className="w-3.5 h-3.5" />
                 Book New Test
               </Button>
@@ -61,7 +61,7 @@ export const PatientLayout: React.FC = () => {
               variant="outline"
               size="sm"
               onClick={handleSignOut}
-              className="rounded-none border border-neutral-300 text-neutral-700 hover:text-[#E94B35] hover:border-[#E94B35] gap-1.5 h-9 text-xs font-bold uppercase tracking-wider"
+              className="rounded-none border border-neutral-300 text-neutral-700 hover:text-[#F1654C] hover:border-[#F1654C] gap-1.5 h-9 text-xs font-bold uppercase tracking-wider"
             >
               <LogOut className="w-4 h-4" />
               <span className="hidden sm:inline">Sign Out</span>
@@ -85,7 +85,7 @@ export const PatientLayout: React.FC = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-2 py-3 border-b-2 text-xs font-bold uppercase tracking-wider transition-colors ${
                     isActive
-                      ? 'border-[#E94B35] text-[#E94B35] font-black'
+                      ? 'border-[#F1654C] text-[#F1654C] font-black'
                       : 'border-transparent text-neutral-600 hover:text-[#171717] hover:border-neutral-400'
                   }`
                 }
@@ -107,7 +107,7 @@ export const PatientLayout: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `flex items-center gap-2.5 px-3 py-2 text-xs font-bold uppercase tracking-wider ${
-                    isActive ? 'bg-[#E94B35] text-white' : 'text-neutral-700 hover:bg-neutral-100'
+                    isActive ? 'bg-[#F1654C] text-white' : 'text-neutral-700 hover:bg-neutral-100'
                   }`
                 }
               >
@@ -117,7 +117,7 @@ export const PatientLayout: React.FC = () => {
             ))}
             <div className="pt-2 border-t border-neutral-200">
               <Link to="/book-appointment" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-[#E94B35] text-white text-xs uppercase font-bold rounded-none h-10">
+                <Button className="w-full bg-[#F1654C] text-white text-xs uppercase font-bold rounded-none h-10">
                   Book New Test
                 </Button>
               </Link>

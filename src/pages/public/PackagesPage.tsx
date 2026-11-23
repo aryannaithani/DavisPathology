@@ -29,11 +29,11 @@ export const PackagesPage: React.FC = () => {
         ]}
       />
 
-      {/* Notice Banner */}
-      <div className="mb-8 p-4 bg-[#F5C542]/15 border-2 border-[#F5C542] text-xs text-[#171717] flex items-start gap-3">
+      {/* Header Info Banner */}
+      <div className="mb-8 p-4 bg-[#F5C542]/20 border-2 border-[#F5C542] text-xs text-[#171717] flex items-start gap-3">
         <Info className="w-4 h-4 text-[#171717] shrink-0 mt-0.5" />
         <div className="leading-relaxed">
-          <strong className="font-bold uppercase tracking-wider">Demonstration Pricing Notice:</strong> Package compositions, test counts and fees displayed below are mock records for web application demonstration. Please contact our laboratory reception desk at Millenium Complex, Agra for operational package availability.
+          <strong className="font-bold uppercase tracking-wider">Preventive Health Notice:</strong> All health checkup packages include complimentary sample collection reporting, fasting guidance, and comprehensive digital report access via the patient portal.
         </div>
       </div>
 
@@ -90,10 +90,10 @@ export const PackagesPage: React.FC = () => {
                         All-Inclusive Package Fee
                       </div>
                       <div className="flex items-baseline gap-2 mt-1">
-                        <span className={`text-3xl sm:text-4xl font-black font-heading ${isFeatured ? 'text-[#F5C542]' : 'text-[#E94B35]'}`}>
+                        <span className={`text-3xl sm:text-4xl font-black font-heading ${isFeatured ? 'text-[#F5C542]' : 'text-[#F1654C]'}`}>
                           {formatPrice(pkg.price)}
                         </span>
-                        <span className="text-[10px] opacity-70">*(Demonstration)</span>
+                        <span className="text-[10px] font-bold text-neutral-500 uppercase">*All-Inclusive</span>
                       </div>
                     </div>
 
@@ -108,7 +108,7 @@ export const PackagesPage: React.FC = () => {
                         {pkg.tests && pkg.tests.length > 0 ? (
                           pkg.tests.map((test) => (
                             <li key={test.id} className="flex items-start gap-2">
-                              <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${isFeatured ? 'text-[#F5C542]' : 'text-[#E94B35]'}`} />
+                              <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${isFeatured ? 'text-[#F5C542]' : 'text-[#F1654C]'}`} />
                               <span className={isFeatured ? 'text-neutral-200' : 'text-neutral-700'}>
                                 {test.name}
                               </span>
@@ -126,7 +126,7 @@ export const PackagesPage: React.FC = () => {
                     <div className={`p-3 text-xs leading-relaxed mb-6 border-l-4 ${
                       isFeatured
                         ? 'bg-neutral-900 text-neutral-300 border-[#F5C542]'
-                        : 'bg-neutral-100 text-neutral-700 border-[#E94B35]'
+                        : 'bg-neutral-100 text-neutral-700 border-[#F1654C]'
                     }`}>
                       <strong className={`block uppercase text-[10px] tracking-wider mb-0.5 ${isFeatured ? 'text-white' : 'text-[#171717]'}`}>
                         Sample Preparation:
@@ -139,7 +139,7 @@ export const PackagesPage: React.FC = () => {
                         className={`w-full font-bold h-12 text-xs uppercase tracking-wider rounded-none ${
                           isFeatured
                             ? 'bg-[#F5C542] hover:bg-[#e4b532] text-[#171717] border-2 border-[#171717]'
-                            : 'bg-[#E94B35] hover:bg-[#d63f2a] text-white border-2 border-[#171717]'
+                            : 'bg-[#F1654C] hover:bg-[#DF472B] text-white border-2 border-[#171717]'
                         }`}
                       >
                         <CalendarCheck className="w-4 h-4 mr-2" />
@@ -171,8 +171,8 @@ export const PackagesPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x-2 divide-neutral-200">
-          <div className="p-6">
-            <div className="text-[11px] font-black uppercase tracking-wider text-[#E94B35] mb-1">
+          <div className="p-6 border-t-4 border-t-[#F1654C]">
+            <div className="text-[11px] font-black uppercase tracking-wider text-[#F1654C] mb-1">
               01. Cost Effectiveness
             </div>
             <strong className="block text-[#171717] text-sm font-bold mb-2">Significant Financial Savings</strong>
@@ -181,7 +181,7 @@ export const PackagesPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6">
+          <div className="p-6 border-t-4 border-t-[#F5C542]">
             <div className="text-[11px] font-black uppercase tracking-wider text-[#171717] mb-1">
               02. Comprehensive Scope
             </div>
@@ -191,8 +191,8 @@ export const PackagesPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6">
-            <div className="text-[11px] font-black uppercase tracking-wider text-[#E94B35] mb-1">
+          <div className="p-6 border-t-4 border-t-[#171717]">
+            <div className="text-[11px] font-black uppercase tracking-wider text-[#F1654C] mb-1">
               03. Actionable Baseline
             </div>
             <strong className="block text-[#171717] text-sm font-bold mb-2">Comparative Tracking</strong>
